@@ -1,5 +1,5 @@
 import { AppBar, Badge, IconButton, Stack, Toolbar, Typography } from "@mui/material";
-import logo from "../Assets/logo_big.png"
+import logo from "../../Assets/logo_big.png"
 import { routes } from "../../Routes/Routes";
 import { theme } from "../../themes/theme";
 import {NavLink } from "react-router-dom";

@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { FC } from "react";
-import heroPic from "../Assets/hero_image.png"
-import handPic from "../Assets/hand_icon.png"
+import heroPic from "../../Assets/hero_image.png"
+import handPic from "../../Assets/hand_icon.png"
 import EastIcon from '@mui/icons-material/East';
 
 interface HeroProps {
