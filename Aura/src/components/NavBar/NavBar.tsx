@@ -1,11 +1,11 @@
 import { AppBar, Badge, IconButton, Stack, Toolbar, Typography } from "@mui/material";
 import logo from "../Assets/logo_big.png"
-import { routes } from "../Routes/Routes";
-import { theme } from "../themes/theme";
+import { routes } from "../../Routes/Routes";
+import { theme } from "../../themes/theme";
 import {NavLink } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./NavBar.css"
-import { useShoppingList } from "../contexts/shoppingCartContext";
+import { useShoppingList } from "../../contexts/shoppingCartContext";
 
 export const NavBar = () => {
   const {items} = useShoppingList();
