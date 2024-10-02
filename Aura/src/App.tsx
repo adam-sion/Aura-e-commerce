@@ -12,8 +12,11 @@ function App() {
     <>
      <ThemeProvider theme={theme}>
      <ShoppingListProvider>
-     <NavBar/>
-     <Outlet/>
+      <div style ={{  overflowX: 'hidden'}}>
+      <NavBar/>
+      <Outlet/>
+      </div>
+  
      </ShoppingListProvider> 
      </ThemeProvider>
     </>

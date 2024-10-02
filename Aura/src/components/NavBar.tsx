@@ -10,7 +10,7 @@ import { useShoppingList } from "../contexts/shoppingCartContext";
 export const NavBar = () => {
   const {items} = useShoppingList();
   return (
-    <div style ={{ marginBottom:'25px'}}>
+    <div style ={{ marginBottom:'25px', width:'100%'}}>
     <AppBar sx={{ bgcolor: theme.palette.primary.main, position:'static'}}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-around'}}>
         <div style={{ display: 'flex', alignItems: 'center'}}>
