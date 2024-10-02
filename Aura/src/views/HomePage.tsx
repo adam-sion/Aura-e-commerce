@@ -15,7 +15,7 @@ export const HomePage:FC = ()=> {
       };
        return (<>
       <Hero scroll={scrollToSection}/> 
-      <div ref={sectionRef} style={{marginTop:'10vh'}}>
+      <div ref={sectionRef} style={{marginTop:'10vh', marginLeft:'2vw'}}>
       <Divider
   sx={{
     borderBottomWidth: '10px',  // This controls the thickness of the Divider
