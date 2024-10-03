@@ -13,6 +13,13 @@ export const ProductDetails:FC = ()=> {
     const [product, setProduct] = useState<Product|undefined>();
     const {addItem} = useShoppingList();
     const [order, setOrder] = useState<Order|undefined>();
+    const [selectedSize, setSelectedSize] = useState(null);
+
+    // Function to handle size selection
+    const handleSizeSelection = (sizeObj:any) => {
+      setSelectedSize(sizeObj.size); // Set the selected size
+      setOrder({ ...product!!, size: sizeObj.size }); // Update the order with selected size
+    };
 
     const sizes:Pick<Order, 'size'>[] = [{size:'XS'},{size:'S'},{size:'M'},{size:'L'},{size:'XL'} ];
 
@@ -54,7 +61,7 @@ return (
 <Box sx={{width:'40%', height: '100%', marginLeft:'2vw'}}>
 <Typography
   sx={{
-    fontSize:'5vh',
+    fontSize:{md:'5vh',s:'2vh', xs:'2vh'},
     fontFamily: 'Georgia, Times New Roman, serif',  // Formal serif font
     fontWeight: 'bold',  // Optional: Make it bold to stand out
   }}
@@ -105,16 +112,17 @@ return (
       <ButtonGroup sx={{ gap: 2, marginTop: '2vh' }} aria-label="size selection">
         {sizes.map((sizeObj) => (
           <Button
-            key={sizeObj.size} // Add a key to each button
-            onClick={() => setOrder({ ...product!!, size: sizeObj.size })} // Access size from sizeObj
+            key={sizeObj.size}
+            onClick={() => handleSizeSelection(sizeObj)} // Handle size selection
             sx={{
-              width: { xs: 40, md: 50 }, // Responsive width
-              height: { xs: 40, md: 50 }, // Responsive height
+              width: { xs: 40, md: 50 },
+              height: { xs: 40, md: 50 },
               borderRadius: 0,
-              backgroundColor: 'black',
-              color: 'white',
+              backgroundColor: selectedSize === sizeObj.size ? 'white' : 'black', // White background for selected, black for others
+              color: selectedSize === sizeObj.size ? 'black' : 'white', // Black text for selected, white for others
+              border: selectedSize === sizeObj.size ? '2px solid black' : 'none', // Outline the selected button
               '&:hover': {
-                backgroundColor: '#333',
+                backgroundColor: selectedSize === sizeObj.size ? '#f5f5f5' : '#333', // Adjust hover background
               },
             }}
           >
