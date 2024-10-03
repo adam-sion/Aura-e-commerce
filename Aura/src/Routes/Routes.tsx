@@ -2,12 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { HomePage } from "../views/HomePage/HomePage";
 import { ProductDetails } from "../components/ProductDetails/ProductDetails";
+import { Category } from "../components/Category/Category";
 
     export const routes = [
         {path:"", element:<HomePage/>, name:"Home"},
-        {path:"/men",element:<HomePage/>, name :"Men"},
-        {path:"/women",element:<HomePage/>, name :"Women"},
-        {path:"/kids",element:<HomePage/>, name :"Kids"},
+        {path:"/men",element:<Category category={"men"}/>, name :"Men"},
+        {path:"/women",element:<Category category={"women"}/>, name :"Women"},
+        {path:"/kids",element:<Category category={"kid"}/>, name :"Kids"},
 
     ]
 

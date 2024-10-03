@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MuiBreadcrum } from "../MuiBreadcrum/MuiBreadcrum";
 import { Product } from "../../types/Product";
-import all_product from "../../data/all_product";
+import all_product from "../../data/all_product.ts";
 
 export const ProductDetails:FC = ()=> {
     const [product, setProduct] = useState<Product|undefined>();

@@ -21,6 +21,13 @@ import p19_img from "../Assets/product_19.png";
 import p20_img from "../Assets/product_20.png";
 import p21_img from "../Assets/product_21.png";
 import p22_img from "../Assets/product_22.png";
+import p25_img from "../Assets/product_25.png";
+import p26_img from "../Assets/product_26.png";
+import p27_img from "../Assets/product_27.png";
+import p28_img from "../Assets/product_28.png";
+import p29_img from "../Assets/product_29.png";
+import p30_img from "../Assets/product_30.png";
+import p31_img from "../Assets/product_31.png";
 import { Product } from "../types/Product";
 
 export const all_product:Product[] = [
@@ -177,6 +184,55 @@ export const all_product:Product[] = [
     category: "men",
     image: p22_img,
     price:50
+  },
+  {
+    id: 25,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "kid",
+    image: p25_img,
+    price:65
+  },
+  {
+    id: 26,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "kid",
+    image: p26_img,
+    price:65
+  },
+  {
+    id: 27,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "kid",
+    image: p27_img,
+    price:65
+  },
+  {
+    id: 28,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "kid",
+    image: p28_img,
+    price:65
+  },
+  {
+    id: 29,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "kid",
+    image: p29_img,
+    price:65
+  },
+  {
+    id: 30,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "kid",
+    image: p30_img,
+    price:65
+  },
+  {
+    id: 31,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "kid",
+    image: p31_img,
+    price:65
   },
 ];
 
