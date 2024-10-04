@@ -1,0 +1,85 @@
+{
+  "hash": "775dd08e",
+  "configHash": "d31e8394",
+  "lockfileHash": "e3b0c442",
+  "browserHash": "0148bb68",
+  "optimized": {
+    "@mui/icons-material/East": {
+      "src": "../../node_modules/@mui/icons-material/esm/East.js",
+      "file": "@mui_icons-material_East.js",
+      "fileHash": "c5543179",
+      "needsInterop": false
+    },
+    "@mui/icons-material/NavigateNext": {
+      "src": "../../node_modules/@mui/icons-material/esm/NavigateNext.js",
+      "file": "@mui_icons-material_NavigateNext.js",
+      "fileHash": "ff7de2f3",
+      "needsInterop": false
+    },
+    "@mui/icons-material/ShoppingCart": {
+      "src": "../../node_modules/@mui/icons-material/esm/ShoppingCart.js",
+      "file": "@mui_icons-material_ShoppingCart.js",
+      "fileHash": "1fda9262",
+      "needsInterop": false
+    },
+    "@mui/material": {
+      "src": "../../node_modules/@mui/material/index.js",
+      "file": "@mui_material.js",
+      "fileHash": "09c1c433",
+      "needsInterop": false
+    },
+    "@mui/material/styles": {
+      "src": "../../node_modules/@mui/material/styles/index.js",
+      "file": "@mui_material_styles.js",
+      "fileHash": "709667ec",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "15b7a64f",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "ac65a1a0",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "8b669601",
+      "needsInterop": false
+    },
+    "react-toastify": {
+      "src": "../../node_modules/react-toastify/dist/react-toastify.esm.mjs",
+      "file": "react-toastify.js",
+      "fileHash": "77ba1337",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-C6WWHQR7": {
+      "file": "chunk-C6WWHQR7.js"
+    },
+    "chunk-436H2BLQ": {
+      "file": "chunk-436H2BLQ.js"
+    },
+    "chunk-RZ5QMKJH": {
+      "file": "chunk-RZ5QMKJH.js"
+    },
+    "chunk-NY6XDYCP": {
+      "file": "chunk-NY6XDYCP.js"
+    },
+    "chunk-2KHBIA62": {
+      "file": "chunk-2KHBIA62.js"
+    },
+    "chunk-L2Q2RVSC": {
+      "file": "chunk-L2Q2RVSC.js"
+    },
+    "chunk-DDNM7ENY": {
+      "file": "chunk-DDNM7ENY.js"
+    }
+  }
+}

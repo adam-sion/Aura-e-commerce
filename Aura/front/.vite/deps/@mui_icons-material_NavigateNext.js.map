@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../node_modules/@mui/icons-material/esm/NavigateNext.js"],
+  "sourcesContent": ["\"use client\";\n\nimport createSvgIcon from './utils/createSvgIcon';\nimport { jsx as _jsx } from \"react/jsx-runtime\";\nexport default createSvgIcon( /*#__PURE__*/_jsx(\"path\", {\n  d: \"M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z\"\n}), 'NavigateNext');"],
+  "mappings": ";;;;;;;;;;;;;;AAGA,yBAA4B;AAC5B,IAAO,uBAAQ,kBAA4B,mBAAAA,KAAK,QAAQ;AAAA,EACtD,GAAG;AACL,CAAC,GAAG,cAAc;",
+  "names": ["_jsx"]
+}

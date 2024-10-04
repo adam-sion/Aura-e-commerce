@@ -1,23 +1,21 @@
 // ShoppingListContext.tsx
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { Order } from '../types/Order';
 
-interface ShoppingListItem {
-  id: number;
-  name: string;
-}
+
 
 interface ShoppingListContextType {
-  items: ShoppingListItem[];
-  addItem: (item: ShoppingListItem) => void;
+  items: Order[];
+  addItem: (item: Order) => void;
   removeItem: (id: number) => void;
 }
 
 const ShoppingListContext = createContext<ShoppingListContextType | undefined>(undefined);
 
 const ShoppingListProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [items, setItems] = useState<ShoppingListItem[]>([]);
+  const [items, setItems] = useState<Order[]>([]);
 
-  const addItem = (item: ShoppingListItem) => {
+  const addItem = (item: Order) => {
     setItems((prevItems) => [...prevItems, item]);
   };
 
@@ -42,3 +40,4 @@ const useShoppingList = () => {
 };
 
 export { ShoppingListProvider, useShoppingList };
+  
