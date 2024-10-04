@@ -8,6 +8,8 @@ import { Box, Button, ButtonGroup, Divider, Typography } from "@mui/material";
 import './ProductDetails.css';
 import { Order } from "../../types/Order.ts";
 import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProductDetails:FC = ()=> {
     const [product, setProduct] = useState<Product|undefined>();
@@ -20,6 +22,17 @@ export const ProductDetails:FC = ()=> {
       setSelectedSize(sizeObj.size); // Set the selected size
       setOrder({ ...product!!, size: sizeObj.size }); // Update the order with selected size
     };
+
+    const handleAddItem = (order: Order) => {
+      
+        if (order === undefined) {
+          toast.error("You have to select size");
+        } else {
+          addItem(order);
+          toast.success("item added to your cart");
+        }
+      };
+      
 
     const sizes:Pick<Order, 'size'>[] = [{size:'XS'},{size:'S'},{size:'M'},{size:'L'},{size:'XL'} ];
 
@@ -147,7 +160,7 @@ return (
             boxShadow: 6, // Increased shadow on hover
           },
         }}
-        onClick={()=> addItem(order!!)}
+        onClick={()=> handleAddItem(order!!)}
       >
         Add to Cart
       </Button>
