@@ -47,8 +47,8 @@ return (
     <MuiBreadcrum product={product} />
     <Box
   sx={{
-    width: '50vw',
-    height: { xs: '150vh', sm: '400vh', md: '70vh' },  // Adjust height for small screens
+    width: '70vw',
+    height: { xs: '150vh', sm: '400vh', md: '75vh' },  // Adjust height for small screens
     display: 'flex',
     backgroundImage: 'linear-gradient(to left, lightblue, white)',  // Blue color with 50% transparency
     flexDirection: 'row',  // Stack on small screens, row on larger screens
