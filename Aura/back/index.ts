@@ -6,21 +6,14 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
- app.use(cors());
+app.use(cors());
 
-// mongoose.connect(
-//     "mongodb+srv://adamsion:12345@cluster0.rmtpv.mongodb.net/aura-Ecommerce")
-//   .then(() => {
-//     console.log("Connected to MongoDB Atlas");
-//   })
-//   .catch((err) => {
-//     console.error("Failed to connect to MongoDB", err);
-//   });
+ app.listen(port, () => {
+      console.log(`⚡ Server is running at http://localhost:${port}`);
+    });
 
-app.get('/', (req:Request, res:Response)=> {
-    res.send('Hello from server');
-})
+app.get('/', (req: Request, res: Response) => {
+    
+  res.send('Hello from the server');
+});
 
-app.listen(port, ()=> {
-    console.log(`⚡server is fire at http://localhost:${port}`)
-})
