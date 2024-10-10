@@ -11,164 +11,190 @@ import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-export const ProductDetails:FC = ()=> {
-    const [product, setProduct] = useState<Product|undefined>();
-    const {addItem} = useShoppingList();
-    const [order, setOrder] = useState<Order|undefined>();
-    const [selectedSize, setSelectedSize] = useState(null);
 
-    // Function to handle size selection
-    const handleSizeSelection = (sizeObj:any) => {
+export const ProductDetails: FC = () => {
+  const [product, setProduct] = useState<Product | undefined>();
+  const { addItem } = useShoppingList();
+  const [order, setOrder] = useState<Order | undefined>();
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [quantity, setQuantity] = useState<number>(1); // New state for quantity
+
+  // Function to handle size selection
+  const handleSizeSelection = (sizeObj: any) => {
       setSelectedSize(sizeObj.size); // Set the selected size
-      setOrder({ ...product!!, size: sizeObj.size }); // Update the order with selected size
-    };
+      setOrder({ ...product!!, size: sizeObj.size, quantity }); // Update the order with selected size and quantity
+  };
 
-    const handleAddItem = (order: Order) => {
-      
-        if (order === undefined) {
-          toast.error("You have to select size");
-        } else {
+  // Function to handle adding the item to cart
+  const handleAddItem = (order: Order) => {
+      if (order === undefined || !selectedSize) {
+          toast.error("You have to select a size");
+      } else {
           addItem(order);
-          toast.success("item added to your cart");
-        }
-      };
-      
+          toast.success("Item added to your cart");
+      }
+  };
 
-    const sizes:Pick<Order, 'size'>[] = [{size:'XS'},{size:'S'},{size:'M'},{size:'L'},{size:'XL'} ];
+  // Increase or decrease quantity
+  const handleQuantityChange = (increment: boolean) => {
+      setQuantity((prevQuantity) =>
+          increment ? prevQuantity + 1 : Math.max(1, prevQuantity - 1) // Ensure quantity is at least 1
+      );
+      if (order) setOrder({ ...order, quantity }); // Update the order with new quantity
+  };
 
-    const {productId} = useParams();
+  const sizes: Pick<Order, 'size'>[] = [{ size: 'XS' }, { size: 'S' }, { size: 'M' }, { size: 'L' }, { size: 'XL' }];
 
-    useEffect(()=> {
-     const foundProduct = all_product.find((item)=> item.id === Number(productId))
-     setProduct(foundProduct);
-    },[])
-return (
-    <div style={{marginLeft:'2vw'}}>
-    <MuiBreadcrum product={product} />
-    <Box
-  sx={{
-    width: '70vw',
-    height: { xs: '150vh', sm: '400vh', md: '75vh' },  // Adjust height for small screens
-    display: 'flex',
-    backgroundImage: 'linear-gradient(to left, lightblue, white)',  // Blue color with 50% transparency
-    flexDirection: 'row',  // Stack on small screens, row on larger screens
-    p: { xs: 2, md: 5 },  // Add padding for smaller screens
-  }}
->
-    <Box sx={{width:'50%', height: '100%', display:'flex', flexDirection:'row'}}>
+  const { productId } = useParams();
 
-   
-<Box sx={{display:"flex", flexDirection:'column', width:"20%", height:'100%', marginRight:'1vw'}}>
+  useEffect(() => {
+      const foundProduct = all_product.find((item) => item.id === Number(productId));
+      setProduct(foundProduct);
+  }, []);
 
-<img style={{marginBottom:'25%', marginTop:'25%'}}  height={'20%'} src={product?.image} alt="" />
-<img style={{marginBottom:'25%'}}  height={'20%'} src={product?.image} alt="" />
-<img style={{marginBottom:'25%'}}  height={'20%'} src={product?.image} alt="" />
-<img  height={'20%'} src={product?.image} alt="" />
-</Box>
-
-<Box sx={{display:"flex", flexDirection:'column', width:"80%", height:'100%', backgroundColor:'purple'}}>
-<img height={'100%'} src={product?.image} alt="" />
-</Box>
-</Box>
-
-<Box sx={{width:'40%', height: '100%', marginLeft:'2vw'}}>
-<Typography
-  sx={{
-    fontSize:{md:'5vh',s:'2vh', xs:'2vh'},
-    fontFamily: 'Georgia, Times New Roman, serif',  // Formal serif font
-    fontWeight: 'bold',  // Optional: Make it bold to stand out
-  }}
->
-  {product?.name}
-</Typography>
-
-<Typography
-
-  sx={{
-    fontSize:'4vh',
-    fontFamily: 'Georgia, Times New Roman, serif',  // Formal serif font
-    fontWeight: 'bold',
-    marginTop:'2vh',
-    color: '#FF4D4D',
-    marginLeft:'1vw'  // Optional: Make it bold to stand out
-  }}
->
-  ${product?.price}
-</Typography>
-
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: { xs: 'column', md: 'column' }, // Stack vertically on small screens, same for medium
-        alignItems: 'center',
-        width: '100%',
-        p: { xs: 2, md: 4 }, // Padding changes based on screen size
-      }}
-    >
-      <Divider
-        sx={{
-          width: '100%', // Ensure the Divider spans the container width
-          borderBottomWidth: '1px', // This controls the thickness of the Divider
-          borderColor: 'black', // Set the color of the Divider
-          mt: 2, // Optional: Add margin above the Divider
-          mb: 4, // Optional: Add margin below the Divider
-        }}
-      />
-      <Typography
-        sx={{ fontFamily: 'Georgia, Times New Roman, serif', marginBottom: '2vh', fontSize: { xs: '1.5rem', md: '2rem' } }} // Responsive font size
-        variant="h3"
-      >
-        Select size:
-      </Typography>
-
-      <ButtonGroup sx={{ gap: 2, marginTop: '2vh' }} aria-label="size selection">
-        {sizes.map((sizeObj) => (
-          <Button
-            key={sizeObj.size}
-            onClick={() => handleSizeSelection(sizeObj)} // Handle size selection
-            sx={{
-              width: { xs: 40, md: 50 },
-              height: { xs: 40, md: 50 },
-              borderRadius: 0,
-              backgroundColor: selectedSize === sizeObj.size ? 'white' : 'black', // White background for selected, black for others
-              color: selectedSize === sizeObj.size ? 'black' : 'white', // Black text for selected, white for others
-              border: selectedSize === sizeObj.size ? '2px solid black' : 'none', // Outline the selected button
-              '&:hover': {
-                backgroundColor: selectedSize === sizeObj.size ? '#f5f5f5' : '#333', // Adjust hover background
-              },
-            }}
+  return (
+      <div style={{ marginLeft: '2vw' }}>
+          <MuiBreadcrum product={product} />
+          <Box
+              sx={{
+                  width: '70vw',
+                  height: { xs: '150vh', sm: '400vh', md: '75vh' },
+                  display: 'flex',
+                  backgroundImage: 'linear-gradient(to left, lightblue, white)',
+                  flexDirection: 'row',
+                  p: { xs: 2, md: 5 },
+              }}
           >
-            {sizeObj.size}
-          </Button>
-        ))}
-      </ButtonGroup>
+              <Box sx={{ width: '50%', height: '100%', display: 'flex', flexDirection: 'row' }}>
+                  <Box sx={{ display: "flex", flexDirection: 'column', width: "20%", height: '100%', marginRight: '1vw' }}>
+                      <img style={{ marginBottom: '25%', marginTop: '25%' }} height={'20%'} src={product?.image} alt="" />
+                      <img style={{ marginBottom: '25%' }} height={'20%'} src={product?.image} alt="" />
+                      <img style={{ marginBottom: '25%' }} height={'20%'} src={product?.image} alt="" />
+                      <img height={'20%'} src={product?.image} alt="" />
+                  </Box>
 
-      <Button
-        variant="contained" // Use contained style for a filled button
-        sx={{
-          backgroundColor: '#f44336', // Beautiful red color
-          color: 'white', // White text color
-          borderRadius: 20, // Rounded corners
-          padding: { xs: '8px 16px', md: '10px 20px' }, // Responsive padding
-          fontSize: { xs: '14px', md: '16px' }, // Responsive font size
-          fontWeight: 'bold', // Bold text
-          boxShadow: 3,
-          marginTop: '7vh', // Slight shadow for depth
-          '&:hover': {
-            backgroundColor: '#d32f2f', // Darker red on hover
-            boxShadow: 6, // Increased shadow on hover
-          },
-        }}
-        onClick={()=> handleAddItem(order!!)}
-      >
-        Add to Cart
-      </Button>
-    </Box>
+                  <Box sx={{ display: "flex", flexDirection: 'column', width: "80%", height: '100%', backgroundColor: 'purple' }}>
+                      <img height={'100%'} src={product?.image} alt="" />
+                  </Box>
+              </Box>
 
+              <Box sx={{ width: '40%', height: '100%', marginLeft: '2vw' }}>
+                  <Typography
+                      sx={{
+                          fontSize: { md: '5vh', s: '2vh', xs: '2vh' },
+                          fontFamily: 'Georgia, Times New Roman, serif',
+                          fontWeight: 'bold',
+                      }}
+                  >
+                      {product?.name}
+                  </Typography>
 
-</Box>
-    </Box>
-    </div>
-)
-}
+                  <Typography
+                      sx={{
+                          fontSize: '4vh',
+                          fontFamily: 'Georgia, Times New Roman, serif',
+                          fontWeight: 'bold',
+                          marginTop: '2vh',
+                          color: '#FF4D4D',
+                          marginLeft: '1vw',
+                      }}
+                  >
+                      ${product?.price}
+                  </Typography>
+
+                  <Box
+                      sx={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          flexDirection: { xs: 'column', md: 'column' },
+                          alignItems: 'center',
+                          width: '100%',
+                          p: { xs: 2, md: 4 },
+                      }}
+                  >
+                      <Divider
+                          sx={{
+                              width: '100%',
+                              borderBottomWidth: '1px',
+                              borderColor: 'black',
+                              mt: 2,
+                              mb: 4,
+                          }}
+                      />
+
+                      {/* Select size */}
+                      <Typography
+                          sx={{ fontFamily: 'Georgia, Times New Roman, serif', marginBottom: '2vh', fontSize: { xs: '1.5rem', md: '2rem' } }}
+                          variant="h3"
+                      >
+                          Select size:
+                      </Typography>
+
+                      <ButtonGroup sx={{ gap: 2, marginTop: '2vh' }} aria-label="size selection">
+                          {sizes.map((sizeObj) => (
+                              <Button
+                                  key={sizeObj.size}
+                                  onClick={() => handleSizeSelection(sizeObj)}
+                                  sx={{
+                                      width: { xs: 40, md: 50 },
+                                      height: { xs: 40, md: 50 },
+                                      borderRadius: 0,
+                                      backgroundColor: selectedSize === sizeObj.size ? 'white' : 'black',
+                                      color: selectedSize === sizeObj.size ? 'black' : 'white',
+                                      border: selectedSize === sizeObj.size ? '2px solid black' : 'none',
+                                      '&:hover': {
+                                          backgroundColor: selectedSize === sizeObj.size ? '#f5f5f5' : '#333',
+                                      },
+                                  }}
+                              >
+                                  {sizeObj.size}
+                              </Button>
+                          ))}
+                      </ButtonGroup>
+
+                      {/* Quantity Buttons */}
+                      <Typography sx={{ fontFamily: 'Georgia, Times New Roman, serif', marginTop: '2vh', fontSize: '1.5rem' }}>
+                          Quantity:
+                      </Typography>
+                      <ButtonGroup sx={{ marginTop: '2vh', gap: 2 }}>
+                          <Button
+                              variant="contained"
+                              onClick={() => handleQuantityChange(false)}
+                          >
+                              -
+                          </Button>
+                          <Button variant="contained">{quantity}</Button>
+                          <Button
+                              variant="contained"
+                              onClick={() => handleQuantityChange(true)}
+                          >
+                              +
+                          </Button>
+                      </ButtonGroup>
+
+                      <Button
+                          variant="contained"
+                          sx={{
+                              backgroundColor: '#f44336',
+                              color: 'white',
+                              borderRadius: 20,
+                              padding: { xs: '8px 16px', md: '10px 20px' },
+                              fontSize: { xs: '14px', md: '16px' },
+                              fontWeight: 'bold',
+                              boxShadow: 3,
+                              marginTop: '7vh',
+                              '&:hover': {
+                                  backgroundColor: '#d32f2f',
+                                  boxShadow: 6,
+                              },
+                          }}
+                          onClick={() => handleAddItem(order!!)}
+                      >
+                          Add to Cart
+                      </Button>
+                  </Box>
+              </Box>
+          </Box>
+      </div>
+  );
+};

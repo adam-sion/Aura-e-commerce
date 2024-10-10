@@ -7,7 +7,8 @@ import { Order } from '../types/Order';
 interface ShoppingListContextType {
   items: Order[];
   addItem: (item: Order) => void;
-  removeItem: (id: number) => void;
+  removeItem: (item: Order) => void;
+  removeAll: ()=> void;
 }
 
 const ShoppingListContext = createContext<ShoppingListContextType | undefined>(undefined);
@@ -19,12 +20,16 @@ const ShoppingListProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setItems((prevItems) => [...prevItems, item]);
   };
 
-  const removeItem = (id: number) => {
-    setItems((prevItems) => prevItems.filter(item => item.id !== id));
+  const removeItem = (item:Order) => {
+    setItems((prevItems) => prevItems.filter(x => x!== item));
   };
 
+  const removeAll = ()=> {
+    setItems([]);
+  }
+
   return (
-    <ShoppingListContext.Provider value={{ items, addItem, removeItem }}>
+    <ShoppingListContext.Provider value={{ items, addItem, removeItem, removeAll }}>
       {children}
     </ShoppingListContext.Provider>
   );

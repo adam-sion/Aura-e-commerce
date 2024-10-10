@@ -7,6 +7,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./NavBar.css"
 import { useShoppingList } from "../../contexts/shoppingCartContext";
 
+
 export const NavBar = () => {
   const {items} = useShoppingList();
   return (
@@ -31,11 +32,13 @@ export const NavBar = () => {
             </NavLink>
           ))}
         </Stack>
-        <IconButton color="inherit">
+        <NavLink style={{color:'black'}} to={'/shoppingCart'}>
+        <IconButton  color="inherit">
           <Badge badgeContent={items.length} color="secondary">
             <ShoppingCartIcon fontSize={"large"} />
           </Badge>
         </IconButton>
+        </NavLink>
       </Toolbar>
     </AppBar>
     </div>
