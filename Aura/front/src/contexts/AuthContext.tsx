@@ -3,10 +3,15 @@ import { User } from "../types/User";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+interface userWitoutPassword {
+    username:string,
+    id:string
+}
+
 interface AuthContextType {
     login: (user:User)=> Promise<boolean>,
     logout: ()=> void,
-    username:string|null
+    user:userWitoutPassword|null
 }
 
 const AuthContext = createContext<AuthContextType|undefined>(undefined);
@@ -15,9 +20,9 @@ const AuthProvider:FC<{children:ReactNode}> = ({children}) => {
 
 const navigate = useNavigate();
 
-const [username, setUsername] = useState<string | null>(() => {
+const [user, setUser] = useState<userWitoutPassword | null>(() => {
     const userData = localStorage.getItem('userData');
-    return userData ? JSON.parse(userData).username || null : null;
+    return userData ? JSON.parse(userData).user || null : null;
   });
   
 
@@ -28,8 +33,8 @@ const login = async(user:User):Promise<boolean>=> {
 
   try {
    const {data} = await api.post('',user);
-   localStorage.setItem('userData', JSON.stringify({username:data.username, token:data.token}));
-   setUsername(data.username);
+   localStorage.setItem('userData', JSON.stringify({user:data.userWithoutPassword, token:data.token}));
+   setUser(data.userWithoutPassword);
    navigate("/");
    return true;
   } catch (error:any) {
@@ -39,11 +44,11 @@ const login = async(user:User):Promise<boolean>=> {
 
  const logout = ()=> {
     localStorage.removeItem('userData');
-    setUsername(null);
+    setUser(null);
  }
 
  return (
-    <AuthContext.Provider value={{login, logout, username}}>
+    <AuthContext.Provider value={{login, logout, user}}>
     {children}
     </AuthContext.Provider>
  )

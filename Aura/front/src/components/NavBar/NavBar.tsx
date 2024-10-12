@@ -12,7 +12,7 @@ import { useAuth } from "../../contexts/AuthContext";
 
 export const NavBar = () => {
   const {items} = useShoppingList();
-  const {username, logout} = useAuth();
+  const {user, logout} = useAuth();
 
   return (
     <div style ={{ marginBottom:'25px', width:'100%'}}>
@@ -38,7 +38,7 @@ export const NavBar = () => {
         </Stack>
         <Box display={'flex'} alignItems={'center'}>
           { 
-          username  ? 
+          user  ? 
           <Box display={'flex'} gap={'2vh'} marginRight={'2vh'}>
             <Typography
           component={"div"}
@@ -50,7 +50,7 @@ export const NavBar = () => {
             textAlign: 'center',
           }}
         >
-          Hi {username} !
+          Hi {user.username} !
         </Typography>
            <Button onClick={logout} variant="contained" sx={{borderRadius:20,fontFamily: 'monospace'}}>
            Logout

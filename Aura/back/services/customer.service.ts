@@ -20,8 +20,10 @@ const signup = async ({username, password}:Omit<Customer, "id">):Promise<void>=>
      await customerRepository.save({username, password: hashedPassword})
 }
 
-const signin = async ({ username, password }: Omit<Customer, "id">): Promise<{username:string, token:string}> => {
-    const user = await customerRepository.findOne({where: {username}});
+const signin = async ({ username, password }: Omit<Customer, "id">): Promise<{userWithoutPassword:Omit<Customer, "password">, token:string}> => {
+    const user = await customerRepository.findOne({
+        where: {username}
+    });
 
     if (!user) {
         throw new ExistsError("User was not found", StatusCodes.UNAUTHORIZED);
@@ -34,7 +36,9 @@ const signin = async ({ username, password }: Omit<Customer, "id">): Promise<{us
 
     const token = jwt.sign({id:user.id}, process.env.JWT_SECRET!, { expiresIn: '1h' });
 
-    return {username, token};
+    const { password: _password, ...userWithoutPassword } = user;
+
+    return {userWithoutPassword, token};
   };
   
 
