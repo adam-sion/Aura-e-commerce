@@ -20,7 +20,7 @@ const signup = async ({username, password}:Omit<Customer, "id">):Promise<void>=>
      await customerRepository.save({username, password: hashedPassword})
 }
 
-const signin = async ({ username, password }: Omit<Customer, "id">): Promise<{userWithoutPassword:Omit<Customer, "password">, token:string}> => {
+const signin = async ({ username, password }: Omit<Customer, "id">): Promise<{username:string, token:string}> => {
     const user = await customerRepository.findOne({
         where: {username}
     });
@@ -36,9 +36,8 @@ const signin = async ({ username, password }: Omit<Customer, "id">): Promise<{us
 
     const token = jwt.sign({id:user.id}, process.env.JWT_SECRET!, { expiresIn: '1h' });
 
-    const { password: _password, ...userWithoutPassword } = user;
 
-    return {userWithoutPassword, token};
+    return {username, token};
   };
   
 

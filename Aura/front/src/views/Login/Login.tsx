@@ -110,6 +110,7 @@ export const Login:FC = ()=> {
           key={name}
           id={name}
           name={name}
+          type={name==='password'? 'password':'text'}
         />
         </FormControl>
       ))}

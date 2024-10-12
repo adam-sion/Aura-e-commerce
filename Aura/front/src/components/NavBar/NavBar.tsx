@@ -6,13 +6,12 @@ import {NavLink } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./NavBar.css"
 import { useShoppingList } from "../../contexts/ShoppingCartContext";
-import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 
 
 export const NavBar = () => {
   const {items} = useShoppingList();
-  const {user, logout} = useAuth();
+  const {username, logout} = useAuth();
 
   return (
     <div style ={{ marginBottom:'25px', width:'100%'}}>
@@ -38,7 +37,7 @@ export const NavBar = () => {
         </Stack>
         <Box display={'flex'} alignItems={'center'}>
           { 
-          user  ? 
+          username  ? 
           <Box display={'flex'} gap={'2vh'} marginRight={'2vh'}>
             <Typography
           component={"div"}
@@ -50,7 +49,7 @@ export const NavBar = () => {
             textAlign: 'center',
           }}
         >
-          Hi {user.username} !
+          Hi {username} !
         </Typography>
            <Button onClick={logout} variant="contained" sx={{borderRadius:20,fontFamily: 'monospace'}}>
            Logout
