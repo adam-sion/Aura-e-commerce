@@ -1,14 +1,17 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import dotenv from"dotenv";
 import { AppDataSource } from "./data-source";
 import { APIRouter } from "./routes/api";
+import { AUTHRouter } from "./routes/auth";
+import { errorHandler } from "./middlewares/error.middleware";
 
 
 
 const main = async ()=> {
-
+dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT||3000;
     app.use(express.json());
     app.use(cors());
     
@@ -16,7 +19,10 @@ const port = 3000;
           console.log(`⚡ Server is running at http://localhost:${port}`);
         });
     
-    app.use('', APIRouter);
+    app.use('/api', APIRouter);
+    app.use('/auth', AUTHRouter);
+
+    app.use(errorHandler);
 }
 
 AppDataSource.initialize()

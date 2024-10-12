@@ -27,12 +27,12 @@ const scroll = () => {
         <Box
     sx={{
       width: '100vw',
-      height: { xs: '110vh', sm: '300vh', md: '50vh' },  // Adjust height for small screens
+      height: { xs: '110vh', sm: '300vh', md: '50vh' }, 
       background: `linear-gradient(80deg, white 0%, ${uniqueColor} 100%)`,
       display: 'flex',
-      flexDirection: { xs: 'column', md: 'row' },  // Stack on small screens, row on larger screens
+      flexDirection: { xs: 'column', md: 'row' },
       alignItems: 'center',
-      p: { xs: 2, md: 5 },  // Add padding for smaller screens
+      p: { xs: 2, md: 5 },  
     }}
   >
     <Typography
@@ -41,19 +41,19 @@ const scroll = () => {
         marginLeft: { md: '15%' },
         marginRight: { md: category === woman ? '5%': '0' },
         flexDirection: 'column',
-        textAlign: { xs: 'center', md: 'left' },  // Center text on small screens, align left on larger screens
-        width: { xs: '100%', md: '50%' },  // Full width on small screens, 30% on larger screens
+        textAlign: { xs: 'center', md: 'left' }, 
+        width: { xs: '100%', md: '50%' },  
       }}
       component="div"
     >
      <Box
   sx={{
-    fontSize: { xs: '16vw', sm: '12vw', md: '6vw' },  // Adjust font size for different screen sizes
+    fontSize: { xs: '16vw', sm: '12vw', md: '6vw' },  
     m: 1,
-    color: uniqueColor,  // Set the text color to color
-    fontFamily: '"Comic Sans MS", "Comic Sans", cursive', // Use a balloon-like font style
-    fontWeight: 'bold',  // Make the font bold for a balloon effect
-    textShadow: '2px 2px 4px rgba(0,0,0,0.2)', // Optional: Add a slight shadow for a lifted effect
+    color: uniqueColor,  
+    fontFamily: '"Comic Sans MS", "Comic Sans", cursive', 
+    fontWeight: 'bold',  
+    textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
   }}
 >
   FLAT 50% OFF
@@ -62,11 +62,11 @@ const scroll = () => {
   
 <Box
   sx={{
-    fontSize: { xs: '6vw', sm: '5vw', md: '3.5vw' }, // Adjust font size for different screen sizes
+    fontSize: { xs: '6vw', sm: '5vw', md: '3.5vw' }, 
     m: 1,
-    color: 'white', // Set the default text color to white
-    fontFamily: '"Poppins", sans-serif', // Beautiful font (or any preferred font)
-    fontWeight: 'bold', // Add some boldness for a strong appearance
+    color: 'white',
+    fontFamily: '"Poppins", sans-serif', 
+    fontWeight: 'bold', 
   }}
 >
   special{' '}
@@ -89,18 +89,18 @@ const scroll = () => {
       >
        <Box
   sx={{
-    fontSize: { xs: '3vw', md: '1.5vh' }, // Responsive text size
-    fontFamily: '"Comic Sans MS", "Comic Sans", cursive', // Playful, childlike font
-    color: '#FF69B4', // Bright pink to give it a fun and childlike vibe
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', // Add depth with a soft shadow
-    letterSpacing: '0.05em', // Slightly increase letter spacing for better readability
-    fontWeight: 'bold', // Balloon-like boldness
+    fontSize: { xs: '3vw', md: '1.5vh' }, 
+    fontFamily: '"Comic Sans MS", "Comic Sans", cursive', 
+    color: '#FF69B4', 
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', 
+    letterSpacing: '0.05em', 
+    fontWeight: 'bold', 
   }}
 >
   OUR Collection
 </Box>
 
-        <EastIcon sx={{ marginLeft: 2, fontSize: { xs: '4vw', md: '2vh' } }} />  {/* Adjust icon size */}
+        <EastIcon sx={{ marginLeft: 2, fontSize: { xs: '4vw', md: '2vh' } }} />  
       </Button>
       </Box>
     </Typography>
@@ -120,10 +120,10 @@ const scroll = () => {
 <div ref={sectionRef} style={{marginTop:'10vh'}}>
       <Divider
   sx={{
-    borderBottomWidth: '10px',  // This controls the thickness of the Divider
-    borderColor: 'black',  // Optional: Set the color of the Divider
+    borderBottomWidth: '10px',  
+    borderColor: 'black',  
     fontWeight: 'fontWeightMedium',
-    mb: 4, // Optional: Add margin below the Divider
+    mb: 4,
   }}
 >
   <Typography variant="h3">Our Collection</Typography>

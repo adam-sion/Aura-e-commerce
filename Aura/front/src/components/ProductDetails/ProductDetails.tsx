@@ -7,7 +7,7 @@ import all_product from "../../data/all_product.ts";
 import { Box, Button, ButtonGroup, Divider, Typography } from "@mui/material";
 import './ProductDetails.css';
 import { Order } from "../../types/Order.ts";
-import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
+import { useShoppingList } from "../../contexts/ShoppingCartContext.tsx";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,15 +17,15 @@ export const ProductDetails: FC = () => {
   const { addItem } = useShoppingList();
   const [order, setOrder] = useState<Order | undefined>();
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [quantity, setQuantity] = useState<number>(1); // New state for quantity
+  const [quantity, setQuantity] = useState<number>(1); 
 
-  // Function to handle size selection
+
   const handleSizeSelection = (sizeObj: any) => {
-      setSelectedSize(sizeObj.size); // Set the selected size
-      setOrder({ ...product!!, size: sizeObj.size, quantity }); // Update the order with selected size and quantity
+      setSelectedSize(sizeObj.size); 
+      setOrder({ ...product!, size: sizeObj.size, quantity }); 
   };
 
-  // Function to handle adding the item to cart
+
   const handleAddItem = (order: Order) => {
       if (order === undefined || !selectedSize) {
           toast.error("You have to select a size");
@@ -35,12 +35,13 @@ export const ProductDetails: FC = () => {
       }
   };
 
-  // Increase or decrease quantity
+
   const handleQuantityChange = (increment: boolean) => {
-      setQuantity((prevQuantity) =>
-          increment ? prevQuantity + 1 : Math.max(1, prevQuantity - 1) // Ensure quantity is at least 1
-      );
-      if (order) setOrder({ ...order, quantity }); // Update the order with new quantity
+    const newQuantity = increment ? quantity + 1 : Math.max(1, quantity - 1);
+
+      setQuantity(newQuantity);
+
+      if (order) setOrder({ ...order, quantity:newQuantity }); 
   };
 
   const sizes: Pick<Order, 'size'>[] = [{ size: 'XS' }, { size: 'S' }, { size: 'M' }, { size: 'L' }, { size: 'XL' }];
@@ -67,7 +68,7 @@ export const ProductDetails: FC = () => {
           >
               <Box sx={{ width: '50%', height: '100%', display: 'flex', flexDirection: 'row' }}>
                   <Box sx={{ display: "flex", flexDirection: 'column', width: "20%", height: '100%', marginRight: '1vw' }}>
-                      <img style={{ marginBottom: '25%', marginTop: '25%' }} height={'20%'} src={product?.image} alt="" />
+                      <img style={{ marginBottom: '25%'}} height={'20%'} src={product?.image} alt="" />
                       <img style={{ marginBottom: '25%' }} height={'20%'} src={product?.image} alt="" />
                       <img style={{ marginBottom: '25%' }} height={'20%'} src={product?.image} alt="" />
                       <img height={'20%'} src={product?.image} alt="" />
@@ -188,7 +189,7 @@ export const ProductDetails: FC = () => {
                                   boxShadow: 6,
                               },
                           }}
-                          onClick={() => handleAddItem(order!!)}
+                          onClick={() => handleAddItem(order!)}
                       >
                           Add to Cart
                       </Button>

@@ -12,12 +12,12 @@ return (
     <Box
     sx={{
       width: '100vw',
-      height: { xs: '110vh', sm: '300vh', md: '50vh' },  // Adjust height for small screens
+      height: { xs: '110vh', sm: '300vh', md: '50vh' },  
       background: 'linear-gradient(to right, #fc5c7d, #6a82fb)',
       display: 'flex',
-      flexDirection: { xs: 'column', md: 'row' },  // Stack on small screens, row on larger screens
+      flexDirection: { xs: 'column', md: 'row' },  
       alignItems: 'center',
-      p: { xs: 2, md: 5 },  // Add padding for smaller screens
+      p: { xs: 2, md: 5 }, 
     }}
   >
     <Typography
@@ -25,21 +25,21 @@ return (
         display: 'flex',
     
         flexDirection: 'column',
-        textAlign: { xs: 'center', md: 'left' },  // Center text on small screens, align left on larger screens
-        width: { xs: '100%', md: '30%' },  // Full width on small screens, 30% on larger screens
+        textAlign: { xs: 'center', md: 'left' },  
+        width: { xs: '100%', md: '30%' },  
         marginLeft: { md: '20%' },
-        marginRight: { md: '5%' }  // Only apply margin on larger screens
+        marginRight: { md: '5%' } 
       }}
       component="div"
     >
       <Box
         sx={{
-          fontSize: { xs: '4vw', sm: '3vw', md: '1.5vw' },  // Adjust font size for different screen sizes
+          fontSize: { xs: '4vw', sm: '3vw', md: '1.5vw' }, 
           m: 1,
-      fontFamily: '"Montserrat", sans-serif', // Beautiful modern font
-    fontWeight: '600',  // Bold to give it prominence
-    color: '#333',  // Dark gray color for an elegant look
-    textShadow: '1px 1px 3px rgba(0, 0, 0, 0.2)',  // Subtle shadow for depth
+      fontFamily: '"Montserrat", sans-serif', 
+    fontWeight: '600',  
+    color: '#333',  
+    textShadow: '1px 1px 3px rgba(0, 0, 0, 0.2)', 
     letterSpacing: '0.05em'
         }}
       >
@@ -48,14 +48,14 @@ return (
   
       <Box
   sx={{
-    fontSize: { xs: '6vw', sm: '5vw', md: '3.5vw' }, // Adjust font size for different screen sizes
+    fontSize: { xs: '6vw', sm: '5vw', md: '3.5vw' }, 
     m: 1,
-    whiteSpace: 'pre-line',  // Center the text for a balanced look
-    lineHeight: 1.2,  // Adjust line height for better spacing between lines
-    fontFamily: '"Playfair Display", serif', // Use a stylish, elegant font
-    fontWeight: '700',  // Make the font bold for emphasis  // Beautiful vibrant orange for the text  // Slightly increase letter spacing for readability
-    textTransform: 'uppercase',  // Make all letters uppercase for a modern look
-    textShadow: '2px 2px 5px rgba(0, 0, 0, 0.1)',  // Add a subtle shadow for depth
+    whiteSpace: 'pre-line',  
+    lineHeight: 1.2, 
+    fontFamily: '"Playfair Display", serif',
+    fontWeight: '700', 
+    textTransform: 'uppercase', 
+    textShadow: '2px 2px 5px rgba(0, 0, 0, 0.1)',  
   }}
 >
   {"new Aura\ncollections\nfor everyone"}
@@ -74,18 +74,18 @@ return (
       >
        <Box
   sx={{
-    fontSize: { xs: '3vw', md: '1.5vh' }, // Responsive text size
-    fontFamily: '"Comic Sans MS", "Comic Sans", cursive', // Playful, childlike font
-    color: '#FF69B4', // Bright pink to give it a fun and childlike vibe
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', // Add depth with a soft shadow
-    letterSpacing: '0.05em', // Slightly increase letter spacing for better readability
-    fontWeight: 'bold', // Balloon-like boldness
+    fontSize: { xs: '3vw', md: '1.5vh' }, 
+    fontFamily: '"Comic Sans MS", "Comic Sans", cursive', 
+    color: '#FF69B4', 
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', 
+    letterSpacing: '0.05em', 
+    fontWeight: 'bold', 
   }}
 >
   Latest Collection
 </Box>
 
-        <EastIcon sx={{ marginLeft: 2, fontSize: { xs: '4vw', md: '2vh' } }} />  {/* Adjust icon size */}
+        <EastIcon sx={{ marginLeft: 2, fontSize: { xs: '4vw', md: '2vh' } }} />  
       </Button>
       <Box sx={{display:'flex', alignItems:'end', marginLeft:2}}>
       <img src={handPic} alt="" height={'40vh' }/>

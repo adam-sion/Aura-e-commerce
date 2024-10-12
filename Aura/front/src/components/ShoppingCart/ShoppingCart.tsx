@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Grid } from "@mui/material";
 import { FC } from "react";
-import { useShoppingList } from "../../contexts/shoppingCartContext";
+import { useShoppingList } from "../../contexts/ShoppingCartContext.tsx";
 import Swal from 'sweetalert2';
 import CloseIcon from '@mui/icons-material/Close';
 import { Order } from "../../types/Order";
@@ -14,9 +14,9 @@ export const ShoppingCart: FC = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center', // Center content horizontally
+          alignItems: 'center', 
           width: '100%',
-          marginTop: '4vh', // Full width of the parent container
+          marginTop: '4vh',
         }}
       >
         {/* Header */}
@@ -79,7 +79,7 @@ export const ShoppingCart: FC = () => {
               <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
                 <Box
                   sx={{ padding: 2, fontFamily: 'cursive', cursor: 'pointer' }}
-                  onClick={() => removeItem(item)} // Pass both id and size
+                  onClick={() => removeItem(item)} 
                 >
                   <CloseIcon />
                 </Box>

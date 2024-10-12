@@ -1,4 +1,4 @@
-DROP SCHEMA IF EXISTS aura;
+DROP SCHEMA IF EXISTS aura CASCADE;
 CREATE SCHEMA aura;
 
 DROP TABLE IF EXISTS aura.products CASCADE;
@@ -17,7 +17,9 @@ DROP TABLE IF EXISTS aura.customers CASCADE;
 CREATE TABLE aura.customers (
  id SERIAL PRIMARY KEY,
  username VARCHAR(20) NOT NULL,
- password VARCHAR(255) NOT NULL
+ password VARCHAR(255) NOT NULL,
+
+ UNIQUE (username, password)
 );
 
 
