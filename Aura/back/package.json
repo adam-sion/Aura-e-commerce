@@ -2,10 +2,10 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.ts"
+    "dev": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "",

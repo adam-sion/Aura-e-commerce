@@ -7,7 +7,7 @@ import all_product from "../../data/all_product.ts";
 import { Box, Button, ButtonGroup, Divider, Typography } from "@mui/material";
 import './ProductDetails.css';
 import { Order } from "../../types/Order.ts";
-import { useShoppingList } from "../../contexts/ShoppingCartContext.tsx";
+import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -82,7 +82,7 @@ export const ProductDetails: FC = () => {
               <Box sx={{ width: '40%', height: '100%', marginLeft: '2vw' }}>
                   <Typography
                       sx={{
-                          fontSize: { md: '5vh', s: '2vh', xs: '2vh' },
+                          fontSize: { md: '4vh', s: '2vh', xs: '2vh' },
                           fontFamily: 'Georgia, Times New Roman, serif',
                           fontWeight: 'bold',
                       }}
