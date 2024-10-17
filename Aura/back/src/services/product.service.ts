@@ -8,4 +8,8 @@ const getProducts = async (): Promise<Product[]> => {
     return await productRepository.find();
 }
 
-export {getProducts}
+const addProduct = async (product:Product):Promise<void> => {
+    await productRepository.save(product);
+}
+
+export {getProducts, addProduct}

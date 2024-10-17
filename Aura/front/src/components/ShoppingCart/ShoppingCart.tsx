@@ -1,14 +1,16 @@
 import { Box, Button, Divider, Grid } from "@mui/material";
 import { FC } from "react";
-import { useShoppingList } from "../../contexts/ShoppingCartContext.tsx";
+import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
 import Swal from 'sweetalert2';
 import CloseIcon from '@mui/icons-material/Close';
 import { Order } from "../../types/Order";
+import { didUserSign } from "../../utils/roles.ts";
+import { Navigate } from "react-router-dom";
 
 export const ShoppingCart: FC = () => {
   const { items, removeItem, removeAll } = useShoppingList();
 
-  return (
+  return !didUserSign()? <Navigate to="/login"/> : (
     <>
       <Box
         sx={{

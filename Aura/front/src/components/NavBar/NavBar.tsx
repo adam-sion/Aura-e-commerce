@@ -51,14 +51,14 @@ export const NavBar = () => {
         >
           Hi {username} !
         </Typography>
-           <Button onClick={logout} variant="contained" sx={{borderRadius:20,fontFamily: 'monospace'}}>
+           <Button onClick={logout} variant="contained" sx={{borderRadius:20,fontFamily: 'monospace', fontWeight:'bold'}}>
            Logout
           </Button>
           </Box>
            :
 
         <NavLink to={'/login'} style={{color:'black', marginRight:'2vh'}}>
-        <Button variant="contained" sx={{borderRadius:20,fontFamily: 'monospace'}}>
+        <Button variant="contained" sx={{borderRadius:20,fontFamily: 'monospace', fontWeight:'bold'}}>
          Login
         </Button>
         </NavLink>

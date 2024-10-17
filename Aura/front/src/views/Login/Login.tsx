@@ -118,7 +118,7 @@ export const Login:FC = ()=> {
           <Button
             type="submit" 
             variant="contained"
-            sx={{ borderRadius: 20, fontFamily: 'monospace', width: '50%' }}
+            sx={{ borderRadius: 20, fontFamily: 'monospace', width: '50%',fontWeight:'bold' }}
           >
             Sign in
           </Button>
