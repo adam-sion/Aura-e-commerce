@@ -1,4 +1,5 @@
 import express from "express"
+import path from "path";
 import { Router } from "express";
 import { addProductHandler, getProductsHandler } from "../controllers/product.controller";
 import multer from "multer";
@@ -13,7 +14,7 @@ const storage = multer.diskStorage({
     destination: './upload/images',
 
     filename:(req,file, cb)=> {
-     return cb(null,`${file.fieldname}_${Date.now()}_${Math.round(Math.random() * 1e9)}`)
+     return cb(null,`${file.fieldname}_${Date.now()}_${Math.round(Math.random() * 1e9)}${path.extname(file.originalname)}`)
     }
 })
 
