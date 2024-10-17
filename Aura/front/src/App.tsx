@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import { NavBar } from './components/NavBar/NavBar'
 import { theme } from './themes/theme'
 import { ThemeProvider } from '@mui/material'
-import { ShoppingListProvider } from './contexts/ShoppingCartContext'
+import { ShoppingListProvider } from './contexts/shoppingCartContext'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from './contexts/AuthContext'

@@ -1,11 +1,12 @@
 
 import { Box, Button, FormControl, Input, InputLabel, Stack, Typography } from "@mui/material";
 import { ChangeEvent, FC, FormEvent, useState } from "react";
-import { Link } from 'react-router-dom';
-import { useNavigateUser } from "../../hooks/useNavigateUser";
+import { Link, Navigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 import { useAuth } from "../../contexts/AuthContext";
 import { User } from "../../types/User";
+import { didUserSign } from "../../utils/roles";
+import { HomePage } from "../HomePage/HomePage";
 
 export const Login:FC = ()=> {
     const [formData, setFormData] = useState<User>({
@@ -14,7 +15,6 @@ export const Login:FC = ()=> {
       });
 
     const {login} = useAuth();
-    useNavigateUser();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -49,7 +49,7 @@ export const Login:FC = ()=> {
           });
       }
       }
-    return (
+    return didUserSign() ? <Navigate to="/"/> : (
         <Box component={'form'} display={'flex'} justifyContent={'center'} onSubmit={handleSubmit}>
         <Stack
           direction="column"

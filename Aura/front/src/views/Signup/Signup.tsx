@@ -2,12 +2,13 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, FormControl, Input, InputAdornment, InputLabel, Stack, Typography } from "@mui/material";
 import { ChangeEvent, FC, FormEvent, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { User } from '../../types/User';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigateUser } from '../../hooks/useNavigateUser';
+import { didUserSign } from '../../utils/roles';
+
 
 
 
@@ -33,7 +34,6 @@ export const Signup:FC = ()=> {
     password:''
   });
 
-  useNavigateUser();
   const {login} = useAuth();
   
   const [validationRules, setValidationRules] = useState<ValidationRulesType>({
@@ -106,7 +106,7 @@ export const Signup:FC = ()=> {
   };
 
 
-    return (
+    return didUserSign() ? <Navigate to="/"/> :(
         <Box component={'form'} display={'flex'} justifyContent={'center'} onSubmit={handleSubmit}>
         <Stack
           direction="column"
