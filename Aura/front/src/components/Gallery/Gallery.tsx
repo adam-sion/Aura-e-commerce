@@ -28,7 +28,7 @@ export const Gallery:FC<GalleryProps> = ({products})=> {
       <div style={{ maxWidth: '350px', marginTop:4 }}>
         <Typography variant="h6">{item.name}</Typography>
         <Typography variant="h5">
-          $<Box component="span" fontWeight="fontWeightMedium">{item.price}</Box>
+          $<Box component="span" fontWeight="fontWeightMedium">{item.price.toFixed(2)}</Box>
         </Typography>
       </div>
     </Grid>

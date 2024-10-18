@@ -100,7 +100,7 @@ export const ProductDetails: FC = () => {
                           marginLeft: '1vw',
                       }}
                   >
-                      ${product?.price}
+                      ${product?.price.toFixed(2)}
                   </Typography>
 
                   <Box

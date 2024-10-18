@@ -9,3 +9,14 @@
 .category-card:hover .category-name {
     opacity: 1;
 }
+
+.category-img{
+    height:90%;
+     width:90%
+}
+
+.category-card:hover .category-img {
+    height:100%;
+    width:100%;
+    transition: ease 0.3s;
+}

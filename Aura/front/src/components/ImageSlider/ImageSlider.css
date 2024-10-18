@@ -1,0 +1,55 @@
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .left-arrow, .right-arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    padding: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+  }
+  
+  .left-arrow {
+    left: 10px;
+  }
+  
+  .right-arrow {
+    right: 10px;
+  }
+  
+  .dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .dot.active {
+    background-color: black;
+  }
+  
+  .image-name {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-size: 1.5rem;
+  }
+  

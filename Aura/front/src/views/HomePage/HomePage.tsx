@@ -2,7 +2,7 @@
 
 import { FC, useRef } from "react"
 import { Hero } from "../../components/Hero/Hero.tsx"
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import {new_collections} from "../../data/new_collections.ts"
 import { Gallery } from "../../components/Gallery/Gallery.tsx";
 export const HomePage:FC = ()=> {
@@ -19,10 +19,10 @@ export const HomePage:FC = ()=> {
       <div ref={sectionRef} style={{marginTop:'10vh'}}>
       <Divider
   sx={{
-    borderBottomWidth: '10px',  // This controls the thickness of the Divider
-    borderColor: 'black',  // Optional: Set the color of the Divider
+    borderBottomWidth: '10px',  
+    borderColor: 'black', 
     fontWeight: 'fontWeightMedium',
-    mb: 4, // Optional: Add margin below the Divider
+    mb: 4,
   }}
 >
   <Typography variant="h3">Latest Collection</Typography>

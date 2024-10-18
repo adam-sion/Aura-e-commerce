@@ -21,7 +21,7 @@ export const ShoppingCart: FC = () => {
           marginTop: '4vh',
         }}
       >
-        {/* Header */}
+
         <Grid container spacing={2} width="50%">
           <Grid item xs={1.5}>
             <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Products</Box>
@@ -54,7 +54,6 @@ export const ShoppingCart: FC = () => {
           }}
         />
 
-        {/* Items List */}
         {items.map((item: Order, index: number) => (
           <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
             <Grid container spacing={2} width="50%">
@@ -73,7 +72,7 @@ export const ShoppingCart: FC = () => {
                 <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.quantity}</Box>
               </Grid>
               <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
-                <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.size}</Box> {/* Display Size */}
+                <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.size}</Box> 
               </Grid>
               <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
                 <Box sx={{ padding: 2, fontFamily: 'cursive' }}>${(item.price * item.quantity).toFixed(2)}</Box>
