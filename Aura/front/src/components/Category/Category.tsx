@@ -118,7 +118,7 @@ const scroll = () => {
 
 
 <div ref={sectionRef} style={{marginTop:'10vh'}}>
-      <Divider
+     <Divider
   sx={{
     borderBottomWidth: '10px',  
     borderColor: 'black',  
@@ -126,7 +126,7 @@ const scroll = () => {
     mb: 4,
   }}
 >
-  <Typography variant="h3">Our Collection</Typography>
+  <Typography variant="h3" sx={{ fontFamily: '"Comic Sans MS", "Comic Sans", cursive'}}>Our Collection</Typography>
 </Divider>
 <Box sx={{marginLeft:'5vw'}}>
 <Gallery products={all_product.filter((item)=> item.category === category)}></Gallery>
