@@ -43,6 +43,7 @@ const login = async(user:User):Promise<boolean>=> {
  const logout = ()=> {
     localStorage.removeItem('userData');
     setUsername(null);
+    navigate("/");
  }
 
  return (
