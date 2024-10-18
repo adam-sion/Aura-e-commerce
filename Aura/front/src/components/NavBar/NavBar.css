@@ -9,3 +9,47 @@ border-bottom: 2px solid black;
     text-decoration: none;
     font-size: large;
   }
+
+  .title-card{
+    position:relative
+  }
+
+  .title-card span {
+    position:absolute;
+    top:-10px;
+    right:-10px;
+    width:50px;
+    height:50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .title-card span::before {
+    content: 'Admin';
+    font-size: 7px;
+    position:absolute;
+    width:150%;
+    height: 15px;
+    background-color: aqua;
+    transform: rotate(45deg) translateY(-20px);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     text-transform: uppercase;
+     font-weight: 600;
+     color: black;
+     letter-spacing: 0.1em;
+     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+
+  .title-card span ::after {
+    content: '';
+    position: absolute;
+    width:5px;
+    height:5px;
+    background-color: aqua;
+    z-index: -1;
+    box-shadow: 140px -140px aqua;
+  }

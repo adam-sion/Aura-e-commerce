@@ -7,6 +7,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./NavBar.css"
 import { useShoppingList } from "../../contexts/shoppingCartContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { isAdmin } from "../../utils/roles";
 
 
 export const NavBar = () => {
@@ -19,7 +20,8 @@ export const NavBar = () => {
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-around'}}>
         <div style={{ display: 'flex', alignItems: 'center'}}>
           <img width={'50px'} height={'50px'} src={logo} alt="Logo" />
-          <Typography variant="h4" component="div" sx={{ marginLeft: 2, fontFamily:'Arial, sans-serif', letterSpacing:4 }}>
+          <Typography className="title-card" variant="h4" component="div" sx={{ marginLeft: 2, fontFamily:'Arial, sans-serif', letterSpacing:4 }}>
+            {isAdmin()?<span></span>: <></>}
             Aura
           </Typography>
         </div>
