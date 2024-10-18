@@ -3,10 +3,11 @@ import App from "../App";
 import { HomePage } from "../views/HomePage/HomePage";
 import { ProductDetails } from "../components/ProductDetails/ProductDetails";
 import { Category } from "../components/Category/Category";
-import { ShoppingCart } from  "../components/ShoppingCart/shoppingCart";
+import { ShoppingCart } from  "../components/ShoppingCart/ShoppingCart";
 import { NotFound } from "../views/NotFound/NotFound";
 import { Login } from "../views/Login/Login";
 import { Signup } from "../views/Signup/Signup";
+import { AdminDash } from "../views/AdminDash/AdminDash";
 
     export const routes = [
         {path:"", element:<HomePage/>, name:"Home"},
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
             {path:"/shoppingCart", element: <ShoppingCart/>},
             {path:"/login", element:<Login/>},
             {path:"/signup", element:<Signup/>},
+            {path:"/adminDash", element:<AdminDash/>},
             {path:"*", element:<NotFound/>}
         ]
     }

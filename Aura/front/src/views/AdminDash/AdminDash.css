@@ -1,0 +1,11 @@
+.category-card {
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+    opacity: 60px;
+}
+
+.category-card:hover .category-name {
+    opacity: 1;
+}

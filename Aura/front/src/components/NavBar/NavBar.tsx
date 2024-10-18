@@ -26,6 +26,16 @@ export const NavBar = () => {
           </Typography>
         </div>
         <Stack direction="row" spacing={2} sx={{justifyContent:'center', gap:5}}>
+        {
+            isAdmin()? <NavLink
+            key={'adminDash'}
+            to={"/adminDash"}
+            style={{ color: theme.palette.secondary.main}}
+            className={({ isActive }) => (isActive ? 'current' : 'link')}
+          >
+            {"Dash Board"}
+          </NavLink>:<></>
+          }
           {routes.map((route) => (
             <NavLink
               key={route.name}
@@ -36,6 +46,7 @@ export const NavBar = () => {
               {route.name}
             </NavLink>
           ))}
+          
         </Stack>
         <Box display={'flex'} alignItems={'center'}>
           { 

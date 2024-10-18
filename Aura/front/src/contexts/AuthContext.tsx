@@ -2,6 +2,7 @@ import { createContext, FC, ReactNode, useContext, useState } from "react";
 import { User } from "../types/User";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { isAdmin } from "../utils/roles";
 
 
 
@@ -32,7 +33,7 @@ const login = async(user:User):Promise<boolean>=> {
    const {data} = await api.post('',user);
    localStorage.setItem('userData', JSON.stringify({username:data.username, token:data.token}));
    setUsername(data.username);
-   navigate("/");
+   navigate(isAdmin()? "/adminDash":"/");
    return true;
   } catch (error:any) {
     return false;
