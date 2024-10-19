@@ -19,12 +19,13 @@ const deleteProduct = async (product:Product):Promise<void>=> {
     }
     
     const productFound = await productRepository.findOne({where: product});
-
+    
     if (!productFound) {
         throw new BadRequest(`No product with id ${product.id} was found`);
     }
 
     await productRepository.remove(productFound);
+ 
 }
 
 export {getProductsByCategory, addProduct, deleteProduct}

@@ -27,7 +27,7 @@ const addProductHandler = async (req:Request, res:Response, next:NextFunction): 
     }
 }
 
-const deleteProductHandler = async (req:Request, res:Response, next:NextFunction)=> {
+const deleteProductHandler = async (req:Request, res:Response, next:NextFunction):Promise<void>=> {
     try {
        
      await deleteProduct(req.body);
