@@ -6,6 +6,7 @@ import { categories } from "../../utils/data";
 import "./AdminDash.css";
 import CloseIcon from '@mui/icons-material/Close';
 import SwitchAccessShortcutIcon from '@mui/icons-material/SwitchAccessShortcut';
+import AddIcon from '@mui/icons-material/Add';
 import beachBack from "../../Assets/categoriesBackground.png";
 import { new_collections } from "../../data/new_collections";
 export const AdminDash:FC = ()=> {
@@ -48,7 +49,7 @@ export const AdminDash:FC = ()=> {
       >
       <Box 
   sx={{ 
-    width: '50%', 
+    width: '40%', 
     height: '40vh',
     position: 'relative',
     display: "flex",
@@ -121,7 +122,7 @@ export const AdminDash:FC = ()=> {
 </Box>
 
 
-<Box sx={{marginTop:'4vh',  width: '50%'}}>
+<Box sx={{marginTop:'4vh',  width: '40%'}}>
 
 {
     categories.map((category,index)=> (
@@ -233,6 +234,27 @@ export const AdminDash:FC = ()=> {
         </Button>
       )}
 
+
+
+
+<Button
+          sx={{
+            position: 'fixed',
+            bottom: '10%',
+            right: '5%',
+            color: 'black',
+            background: 'linear-gradient(130deg, red, white)',
+            width:'6em',
+            height:'6em',
+            borderRadius:'100%',
+            boxShadow: 3,
+            '&:hover': {
+              backgroundColor: 'whiteSmoke',
+            },
+          }}
+        >
+        <AddIcon sx={{fontSize:'4em'}}/>
+        </Button>
       </Box>
       
     )
