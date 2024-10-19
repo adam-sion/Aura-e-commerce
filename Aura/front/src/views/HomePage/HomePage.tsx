@@ -25,7 +25,7 @@ export const HomePage:FC = ()=> {
     mb: 4,
   }}
 >
-  <Typography variant="h3">Latest Collection</Typography>
+  <Typography variant="h3" sx={{fontFamily: '"Comic Sans MS", "Comic Sans", cursive'}}>Latest Collection</Typography>
 </Divider>
 <Box sx={{marginLeft:'5vw'}}>
 <Gallery products={new_collections}></Gallery>

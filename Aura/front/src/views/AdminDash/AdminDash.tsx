@@ -103,7 +103,8 @@ export const AdminDash:FC = ()=> {
         backgroundColor: 'rgba(0, 0, 0, 0.7)', 
         padding: '10px 20px', 
         borderRadius: '10px', 
-        textAlign: 'center' 
+        textAlign: 'center',
+         
     }} 
     className="category-name"
 >
@@ -125,7 +126,7 @@ export const AdminDash:FC = ()=> {
 {
     categories.map((category,index)=> (
         <Box key={index} sx={{marginBottom:'15vh'}} ref={(el:HTMLDivElement|null) => (refs.current[index] = el)}>
-<Typography textAlign={'center'} variant="h3">{category.name}</Typography>
+<Typography sx={{fontFamily: '"Comic Sans MS", "Comic Sans", cursive'}} textAlign={'center'} variant="h3">{category.name}</Typography>
 <Box sx={{display:'flex', justifyContent:'center', paddingTop:2}}>
 <Divider
           sx={{

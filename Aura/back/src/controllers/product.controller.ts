@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from "express"; 
 import { Product } from "../entities/product.entity";
-import { addProduct, getProducts } from "../services/product.service";
+import { addProduct, getProductsByCategory } from "../services/product.service";
 import { StatusCodes } from "http-status-codes";
 import { BadRequest } from "../errors/BadRequest";
 
-const getProductsHandler = async (req: Request, res: Response, next:NextFunction): Promise<void> => {  
+const getProductsByCategoryHandler = async (req: Request, res: Response, next:NextFunction): Promise<void> => {  
     try {
-        const products: Product[] = await getProducts();
+        const products: Product[] = await getProductsByCategory(req.params.category);
         res.status(StatusCodes.OK).json(products);
     } catch (error: unknown) {
         next(new Error("couldn't get the products"))
@@ -26,4 +26,4 @@ const addProductHandler = async (req:Request, res:Response, next:NextFunction): 
     }
 }
 
-export {getProductsHandler, addProductHandler}
+export {getProductsByCategoryHandler, addProductHandler}

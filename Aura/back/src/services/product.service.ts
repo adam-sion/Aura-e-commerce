@@ -4,12 +4,12 @@ import { Product } from "../entities/product.entity";
 
 const productRepository:Repository<Product> = AppDataSource.getRepository(Product);
 
-const getProducts = async (): Promise<Product[]> => {
-    return await productRepository.find();
+const getProductsByCategory = async (category:Product["gender"]): Promise<Product[]> => {
+    return await productRepository.find({where: {gender:category}});
 }
 
 const addProduct = async (product:Product):Promise<void> => {
     await productRepository.save(product);
 }
 
-export {getProducts, addProduct}
+export {getProductsByCategory, addProduct}

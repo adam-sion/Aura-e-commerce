@@ -1,13 +1,13 @@
 import express from "express"
 import path from "path";
 import { Router } from "express";
-import { addProductHandler, getProductsHandler } from "../controllers/product.controller";
+import { addProductHandler, getProductsByCategoryHandler } from "../controllers/product.controller";
 import multer from "multer";
 import { uploadImageHandler } from "../controllers/image.controller";
 
 export const APIRouter = Router();
 
-APIRouter.get('/products', getProductsHandler);
+APIRouter.get('/products/:category', getProductsByCategoryHandler);
 APIRouter.post('/product', addProductHandler);
 
 const storage = multer.diskStorage({
