@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"; 
 import { Product } from "../entities/product.entity";
-import { addProduct, getProductsByCategory } from "../services/product.service";
+import { addProduct, deleteProduct, getProductsByCategory } from "../services/product.service";
 import { StatusCodes } from "http-status-codes";
 import { BadRequest } from "../errors/BadRequest";
 
@@ -15,6 +15,7 @@ const getProductsByCategoryHandler = async (req: Request, res: Response, next:Ne
 
 const addProductHandler = async (req:Request, res:Response, next:NextFunction): Promise<void> => {
     try {
+    
       await addProduct(req.body);
       res.status(StatusCodes.CREATED).json("Product added successfully!")
     } catch (error: any) {
@@ -26,4 +27,14 @@ const addProductHandler = async (req:Request, res:Response, next:NextFunction): 
     }
 }
 
-export {getProductsByCategoryHandler, addProductHandler}
+const deleteProductHandler = async (req:Request, res:Response, next:NextFunction)=> {
+    try {
+       
+     await deleteProduct(req.body);
+     res.status(StatusCodes.OK).json("product deleted successfully!");
+    } catch (error:any) {
+      next(error);
+    }
+}
+
+export {getProductsByCategoryHandler, addProductHandler, deleteProductHandler}
