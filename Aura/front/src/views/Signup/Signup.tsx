@@ -149,7 +149,7 @@ export const Signup:FC = ()=> {
           </Box>
       
 
-          {['username', 'password'].map((name) => (
+          {Object.keys(validationRules).map((name) => (
           <FormControl key={name}>
             <InputLabel
               htmlFor={name}

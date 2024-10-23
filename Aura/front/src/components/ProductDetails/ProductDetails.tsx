@@ -7,7 +7,7 @@ import all_product from "../../data/all_product.ts";
 import { Box, Button, ButtonGroup, Divider, Typography } from "@mui/material";
 import './ProductDetails.css';
 import { Order } from "../../types/Order.ts";
-import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
+import { useShoppingList } from "../../contexts/ShoppingCartContext.tsx";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
