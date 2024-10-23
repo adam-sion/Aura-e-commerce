@@ -221,7 +221,6 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 }
 
   setFormData({ ...formData, [name]: name==="image"? e.target.files![0] :name==="category"? value.toLowerCase(): value });
-  console.log(formData);
 }
 
     return !isAdmin()? <Navigate to="/"/>:(
