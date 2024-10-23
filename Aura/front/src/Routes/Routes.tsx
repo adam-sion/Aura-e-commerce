@@ -13,7 +13,7 @@ import { AdminDash } from "../views/AdminDash/AdminDash";
         {path:"", element:<HomePage/>, name:"Home"},
         {path:"/men",element:<Category category={"men"}/>, name :"Men"},
         {path:"/women",element:<Category category={"women"}/>, name :"Women"},
-        {path:"/kids",element:<Category category={"kid"}/>, name :"Kids"},
+        {path:"/kids",element:<Category category={"kids"}/>, name :"Kids"},
     ]
 
 

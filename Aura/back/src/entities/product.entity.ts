@@ -12,7 +12,7 @@ export class Product {
     price: number
 
     @Column()
-    gender: string
+    category: string
 
     @Column()
     img: string

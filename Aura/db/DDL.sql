@@ -7,7 +7,7 @@ CREATE TABLE aura.products (
  id SERIAL PRIMARY KEY,
  name TEXT NOT NULL,
  price SMALLINT NOT NULL,
- gender VARCHAR(10) CHECK (gender IN ('men', 'women', 'kids')),
+ category VARCHAR(10) CHECK (category IN ('men', 'women', 'kids')),
  img TEXT NOT NULL
 );
 

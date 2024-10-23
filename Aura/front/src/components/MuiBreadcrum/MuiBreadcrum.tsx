@@ -13,7 +13,7 @@ export const MuiBreadcrum:FC<breadcrumProps> = ({product})=> {
         <Box sx={{marginLeft:'2vw'}} m={2}>
 <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNextIcon fontSize="small"/>}>
 <Link className="bread-link" to={"/"}>Home</Link>
-<Link className="bread-link" to={`/${product?.category === 'kid'  ?'kids': product?.category}`}>{product?.category === 'kid'  ?'kids': product?.category}</Link>
+<Link className="bread-link" to={`/${product?.category}`}>{product?.category}</Link>
 <Link className="bread-link" to={`/product/${product?.id}`}>{product?.name}</Link>
 </Breadcrumbs>
         </Box>

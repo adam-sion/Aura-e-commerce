@@ -13,6 +13,7 @@ import { new_collections } from "../../data/new_collections";
 import Swal from "sweetalert2";
 import { Product } from "../../types/Product";
 import axios from "axios";
+import { useFetchCategoryProducts } from "../../api/hooks/useFetchCategoryProducts";
 
 
 
@@ -29,6 +30,27 @@ type ValidationRulesType = {
 
 
 export const AdminDash:FC = ()=> {
+
+ 
+    const [ menProducts, fetchMenProducts ] = useFetchCategoryProducts('men');
+    const [ womenProducts, fetchWomenProducts ] = useFetchCategoryProducts('women');
+    const [ kidsProducts, fetchKidsProducts ] = useFetchCategoryProducts('kids');
+
+    const [productMap, setProductMap] = useState<{[key:string]:Product[]}>({
+      men:[],
+      women:[],
+      kids:[]
+    })
+
+    useEffect(() => {
+      setProductMap({
+          men: menProducts,
+          women: womenProducts,
+          kids: kidsProducts,
+      });
+  }, [menProducts, womenProducts, kidsProducts]);
+
+
     const refs = useRef<(null | HTMLDivElement)[]>([]);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
    const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -156,7 +178,7 @@ const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
    if (imgData.data.image_url === undefined) {
     throw new Error("can't upload image");
    }
-   const {data} = await api.post('/product', {name:formData.name, price:formData.price, gender: formData.category, img:imgData.data.image_url})
+   const {data} = await api.post('/product', {name:formData.name, price:formData.price, category: formData.category, img:imgData.data.image_url})
    Swal.fire({
     title: 'Success',
     text: data,
@@ -351,7 +373,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 {/* products */}
 {
-    new_collections.filter((cat)=> cat.category === category.name.toLowerCase()).map((item, index)=> (
+ productMap[category.name]?.map((item, index)=> (
         <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
      <Grid sx={{marginTop:'1vh'}} container spacing={2}>
           <Grid item xs={3}>
@@ -392,6 +414,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
         </Box>
     ))
+  
 }
 
 

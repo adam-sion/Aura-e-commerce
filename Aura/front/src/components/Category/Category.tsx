@@ -7,15 +7,18 @@ import woman from "../../Assets/woman.png"
 
 import EastIcon from '@mui/icons-material/East';
 import { Gallery } from "../Gallery/Gallery";
-import all_product from "../../data/all_product.ts";
+
+import { useFetchCategoryProducts } from "../../api/hooks/useFetchCategoryProducts.tsx";
 
 interface CategoryProps {
     category: Product["category"]
 }
 
 export const Category:FC<CategoryProps> = ({category})=> {
-const uniqueColor = category === 'kid' ? 'green' : category === 'men'? 'blue': 'purple';
-    
+const uniqueColor = category === 'kids' ? 'green' : category === 'men'? 'blue': 'purple';
+
+const [categoryProducts] = useFetchCategoryProducts(category);
+
 const scroll = () => {
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: "smooth" });
@@ -107,7 +110,7 @@ const scroll = () => {
   
 
     <img
-      src={category === 'kid' ? kid : category === 'men' ? man : woman}
+      src={category === 'kids' ? kid : category === 'men' ? man : woman}
       alt=""
       style={{
         height: '90%',
@@ -129,7 +132,7 @@ const scroll = () => {
   <Typography variant="h3" sx={{ fontFamily: '"Comic Sans MS", "Comic Sans", cursive'}}>Our Collection</Typography>
 </Divider>
 <Box sx={{marginLeft:'5vw'}}>
-<Gallery products={all_product.filter((item)=> item.category === category)}></Gallery>
+<Gallery products={categoryProducts}></Gallery>
 </Box>
 </div>
 </>

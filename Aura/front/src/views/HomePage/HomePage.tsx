@@ -1,13 +1,16 @@
 
 
-import { FC, useRef } from "react"
+import { FC, useEffect, useRef } from "react"
 import { Hero } from "../../components/Hero/Hero.tsx"
 import { Box, Divider, Typography } from "@mui/material";
-import {new_collections} from "../../data/new_collections.ts"
 import { Gallery } from "../../components/Gallery/Gallery.tsx";
-export const HomePage:FC = ()=> {
+import { useFetchSaleProducts } from "../../api/hooks/useFetchSaleProducs.tsx";
 
+
+export const HomePage:FC = ()=> {
+   const [saleProducts] = useFetchSaleProducts();
     const sectionRef = useRef<null | HTMLDivElement>(null);
+
 
     const scrollToSection = () => {
         if (sectionRef.current) {
@@ -28,7 +31,7 @@ export const HomePage:FC = ()=> {
   <Typography variant="h3" sx={{fontFamily: '"Comic Sans MS", "Comic Sans", cursive'}}>Latest Collection</Typography>
 </Divider>
 <Box sx={{marginLeft:'5vw'}}>
-<Gallery products={new_collections}></Gallery>
+<Gallery products={saleProducts}></Gallery>
 </Box>
 </div>
     </>)

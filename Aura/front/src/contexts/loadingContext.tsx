@@ -30,9 +30,10 @@ const LoadingProvider: FC<{ children: ReactNode }> = ({ children }) => {
                 alignItems: 'center',
                 height: '50vh',
                 width: '100%', 
+                overflow:'hidden'
             }}
         >
-            <CircularProgress color={"secondary"} size={300} />
+            <CircularProgress color={"secondary"} size={250} />
         </Box>
     );
     
