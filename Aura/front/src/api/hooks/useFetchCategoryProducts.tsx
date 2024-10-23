@@ -6,13 +6,12 @@ import { useLoading } from "../../contexts/loadingContext";
 
 export const useFetchCategoryProducts = (category:Product["category"]):[Product[], ()=> Promise<void>]=> {
 
-const api = axios.create({baseURL:`http://localhost:4000/api/products/${category}`});
+const api = axios.create({baseURL:`http://localhost:4000/api/products/category/${category}`});
 const [categoryProducts, setCategoryProducts] = useState<Product[]>([]);
 const {setIsLoading} = useLoading();
 
 const fetchCategoryProducts = async ()=> {
         try {
-            console.log("fetch try");
          const {data} = await api.get('');
         setCategoryProducts(data);
         } catch (error:any){
@@ -29,7 +28,7 @@ const fetchCategoryProducts = async ()=> {
             fetchCategoryProducts();
             return () => {
               };
-        },[]);
+        },[category]);
         
         return [categoryProducts, fetchCategoryProducts];
         }

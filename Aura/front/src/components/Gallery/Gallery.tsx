@@ -14,7 +14,7 @@ export const Gallery:FC<GalleryProps> = ({products})=> {
     <Grid item xs={2} sm={4} md={3} key={item.id}>
       <Link to={`/product/${item.id}`}><Box
         component="img"
-        src={item.image}
+        src={item.img}
         alt=""
         sx={{
           width: '100%',

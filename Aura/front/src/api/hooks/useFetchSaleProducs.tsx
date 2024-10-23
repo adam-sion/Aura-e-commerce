@@ -12,7 +12,6 @@ const {setIsLoading} = useLoading();
 
 const fetchSaleProducts = async ()=> {
         try {
-         console.log('fetch try');
          const {data} = await api.get('');
         setSaleProducts(data);
         } catch (error:any){

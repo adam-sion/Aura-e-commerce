@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"; 
 import { Product } from "../entities/product.entity";
-import { addProduct, deleteProduct, getProductsByCategory, getSaleProducts } from "../services/product.service";
+import { addProduct, deleteProduct, getProductById, getProductsByCategory, getSaleProducts } from "../services/product.service";
 import { StatusCodes } from "http-status-codes";
 import { BadRequest } from "../errors/BadRequest";
 
@@ -12,6 +12,16 @@ const getProductsByCategoryHandler = async (req: Request, res: Response, next:Ne
         next(new Error("couldn't get the products"))
     }
 };
+
+const getProductByIdHandler = async (req:Request, res:Response, next:NextFunction):Promise<void> => {
+    try {
+     const {id} = req.params;
+     const product = await getProductById(parseInt(id));
+     res.status(StatusCodes.OK).json(product);
+    } catch (error:unknown) {
+       next(error);
+    }
+}
 
 const addProductHandler = async (req:Request, res:Response, next:NextFunction): Promise<void> => {
     try {
@@ -37,7 +47,7 @@ const deleteProductHandler = async (req:Request, res:Response, next:NextFunction
     }
 }
 
-const getSaleProductsHandler = async(req:Request, res:Response, next:NextFunction):Promise<void>=> {
+const getSaleProductsHandler = async (req:Request, res:Response, next:NextFunction):Promise<void>=> {
     try {
       const saleProducts:Product[] = await getSaleProducts();
       res.status(StatusCodes.OK).json(saleProducts);
@@ -46,4 +56,4 @@ const getSaleProductsHandler = async(req:Request, res:Response, next:NextFunctio
     }
 }
 
-export {getProductsByCategoryHandler, addProductHandler, deleteProductHandler, getSaleProductsHandler}
+export {getProductsByCategoryHandler, addProductHandler, deleteProductHandler, getSaleProductsHandler, getProductByIdHandler}

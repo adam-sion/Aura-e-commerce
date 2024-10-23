@@ -31,6 +31,33 @@ type ValidationRulesType = {
 
 export const AdminDash:FC = ()=> {
 
+
+
+  const handleRemove = async (product:Product)=> {
+    const apiRemove = axios.create({baseURL:`http://localhost:4000/api/product/${product.id}`});
+    try {
+    const {data} = await apiRemove.delete('');
+    product.category ==='kids'? fetchKidsProducts(): 
+    product.category ==='men'?fetchMenProducts(): fetchWomenProducts();
+    Swal.fire({
+      title: 'Success',
+      text: data,
+      icon: 'success',
+      confirmButtonText: 'Okay',
+  });
+
+    } catch (error:any) {
+ const errorMessage = error.message || "Can't remove product";
+          
+          Swal.fire({
+              title: 'Failed',
+              text: errorMessage,
+              icon: 'error',
+              confirmButtonText: 'Okay',
+          });
+    }
+
+  }
  
     const [ menProducts, fetchMenProducts ] = useFetchCategoryProducts('men');
     const [ womenProducts, fetchWomenProducts ] = useFetchCategoryProducts('women');
@@ -48,6 +75,7 @@ export const AdminDash:FC = ()=> {
           women: womenProducts,
           kids: kidsProducts,
       });
+
   }, [menProducts, womenProducts, kidsProducts]);
 
 
@@ -178,7 +206,9 @@ const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
    if (imgData.data.image_url === undefined) {
     throw new Error("can't upload image");
    }
-   const {data} = await api.post('/product', {name:formData.name, price:formData.price, category: formData.category, img:imgData.data.image_url})
+   const {data} = await api.post('/product', {name:formData.name, price:formData.price, category: formData.category, img:imgData.data.image_url});
+   formData.category ==='kids'? fetchKidsProducts(): 
+   formData.category ==='men'?fetchMenProducts(): fetchWomenProducts();
    Swal.fire({
     title: 'Success',
     text: data,
@@ -373,11 +403,11 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 {/* products */}
 {
- productMap[category.name]?.map((item, index)=> (
+ productMap[category.name.toLowerCase()].map((item:Product, index)=> (
         <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
      <Grid sx={{marginTop:'1vh'}} container spacing={2}>
           <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}> <img height={'100%'} width={'100%'} src={item.image} alt={item.name} /></Box>
+            <Box sx={{ padding: 2, fontFamily: 'cursive' }}> <img height={'100%'} width={'100%'} src={item.img} alt={item.name} /></Box>
           </Grid>
           <Grid item xs={3}>
             <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.name}</Box>
@@ -390,7 +420,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
             <Box
                   sx={{ padding: 2, fontFamily: 'cursive', cursor: 'pointer' }}
-                  onClick={() => alert('remove')} 
+                  onClick={() => handleRemove(item)} 
                 >
                   <CloseIcon />
                 </Box>

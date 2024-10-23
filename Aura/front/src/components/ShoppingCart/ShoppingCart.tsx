@@ -59,7 +59,7 @@ export const ShoppingCart: FC = () => {
             <Grid container spacing={2} width="50%">
               <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
                 <Box sx={{ padding: 2, fontFamily: 'cursive' }}>
-                  <img height={'100%'} width={'100%'} src={item.image} alt={item.name} />
+                  <img height={'100%'} width={'100%'} src={item.img} alt={item.name} />
                 </Box>
               </Grid>
               <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={3}>

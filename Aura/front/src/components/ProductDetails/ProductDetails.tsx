@@ -10,6 +10,7 @@ import { Order } from "../../types/Order.ts";
 import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 
 export const ProductDetails: FC = () => {
@@ -47,10 +48,13 @@ export const ProductDetails: FC = () => {
   const sizes: Pick<Order, 'size'>[] = [{ size: 'XS' }, { size: 'S' }, { size: 'M' }, { size: 'L' }, { size: 'XL' }];
 
   const { productId } = useParams();
+const api = axios.create({baseURL:`http://localhost:4000/api/product/${productId}`});
 
   useEffect(() => {
-      const foundProduct = all_product.find((item) => item.id === Number(productId));
-      setProduct(foundProduct);
+   ( async ()=> {
+      const {data} = await api.get('');
+      setProduct(data);
+    })()
   }, []);
 
   return (
@@ -68,14 +72,14 @@ export const ProductDetails: FC = () => {
           >
               <Box sx={{ width: '50%', height: '100%', display: 'flex', flexDirection: 'row' }}>
                   <Box sx={{ display: "flex", flexDirection: 'column', width: "20%", height: '100%', marginRight: '1vw' }}>
-                      <img style={{ marginBottom: '25%'}} height={'20%'} src={product?.image} alt="" />
-                      <img style={{ marginBottom: '25%' }} height={'20%'} src={product?.image} alt="" />
-                      <img style={{ marginBottom: '25%' }} height={'20%'} src={product?.image} alt="" />
-                      <img height={'20%'} src={product?.image} alt="" />
+                      <img style={{ marginBottom: '25%'}} height={'20%'} src={product?.img} alt="" />
+                      <img style={{ marginBottom: '25%' }} height={'20%'} src={product?.img} alt="" />
+                      <img style={{ marginBottom: '25%' }} height={'20%'} src={product?.img} alt="" />
+                      <img height={'20%'} src={product?.img} alt="" />
                   </Box>
 
-                  <Box sx={{ display: "flex", flexDirection: 'column', width: "80%", height: '100%', backgroundColor: 'purple' }}>
-                      <img height={'100%'} src={product?.image} alt="" />
+                  <Box sx={{ display: "flex", flexDirection: 'column', width: "80%", height: '100%', backgroundColor:'white' }}>
+                      <img height={'100%'} src={product?.img} alt="" />
                   </Box>
               </Box>
 
