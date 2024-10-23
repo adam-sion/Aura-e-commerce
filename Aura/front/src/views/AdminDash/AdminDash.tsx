@@ -459,7 +459,7 @@ onClick={handleOpen}
 
 <TextField
 onChange={handleChange}
-value={formData["price"]}
+value={!validationRules["price"].userTyped ? "": formData["price"]}
 name={"price"}
   id="outlined-required"
   label="Price"
