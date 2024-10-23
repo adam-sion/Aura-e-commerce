@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { isAdmin } from "../utils/roles";
 import { useLoading } from "./loadingContext";
+import Swal from "sweetalert2";
 
 
 
@@ -50,6 +51,12 @@ const login = async(user:User):Promise<boolean>=> {
     localStorage.removeItem('userData');
     setUsername(null);
     navigate("/");
+    Swal.fire({
+      title: 'Success',
+      text: "You have logged out",
+      icon: 'success',
+      confirmButtonText: 'Okay',
+  });
  }
 
  return (
