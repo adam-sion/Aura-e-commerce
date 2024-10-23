@@ -11,6 +11,26 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import beachBack from "../../Assets/categoriesBackground.png";
 import { new_collections } from "../../data/new_collections";
 import Swal from "sweetalert2";
+import { Product } from "../../types/Product";
+
+
+
+type ValidationRulesType = {
+  name: {
+    rule: (x: string) => boolean;
+    userTyped: boolean;
+  };
+  price: {
+    rule: (x: number) => boolean;
+    userTyped: boolean;
+  };
+  image: {
+    rule: (x:File)=> boolean;
+    userTyped: boolean;
+  }
+
+};
+
 export const AdminDash:FC = ()=> {
     const refs = useRef<(null | HTMLDivElement)[]>([]);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
@@ -18,7 +38,7 @@ export const AdminDash:FC = ()=> {
    const [fileName, setFileName] = useState<string>('');
 
    const handleFileChange = (e:ChangeEvent<HTMLInputElement>) => {
-     const file = e.target.files![0];
+     const file:File = e.target.files![0];
      if (file) {
        setFileName(file.name);
        console.log(file);
@@ -82,6 +102,57 @@ const handleOpen  = ()=> {
           color: 'black',  // Ensures the label stays black when focused
         },
       }
+
+// form logic------------------------------------------
+
+
+const [formData, setFormData] = useState<Omit<Product, "id">>({
+  name:'',
+  price:0,
+  image: '',
+  category: 'men'
+});
+
+const [validationRules, setValidationRules] = useState<ValidationRulesType>({
+  name: {
+    rule: (x: string) =>
+      /^[a-zA-Z0-9](?!.*[_.]{2})[a-zA-Z0-9._]{1,14}[a-zA-Z0-9]$/.test(x),
+    userTyped: false,
+  },
+  price: {
+    rule: (x: number) =>
+      x>0 && x<100000,
+    userTyped: false,
+  },
+  image: {
+    rule: (x:File)=> x!==null,
+    userTyped: false
+  }
+
+});
+
+const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+  const { name, value } = e.target;
+if (name === 'image') {
+  handleFileChange(e);
+} else {
+  const keyName = name as keyof ValidationRulesType;
+
+  if (!validationRules[keyName].userTyped) {
+    setValidationRules((prev) => ({
+      ...prev,
+      [keyName]: {
+        ...prev[keyName],
+        userTyped: true,
+      },
+    }));
+  }
+
+  setFormData({ ...formData, [name]: value });
+}
+};
+
     return !isAdmin()? <Navigate to="/"/>:(
         <Box
         sx={{
@@ -305,6 +376,8 @@ onClick={handleOpen}
 
 
 
+
+
         <Modal
         open={modalOpen}
         onClose={handleClose}
@@ -316,8 +389,8 @@ onClick={handleOpen}
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 500,
-  height:500,
+  width: '30%',
+  height:'62%',
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius:'20px'
@@ -376,12 +449,18 @@ onClick={handleOpen}
           </Box>
 
      <TextField
+     onChange={handleChange}
+     value={formData["name"]}
+     name={"name"}
   id="outlined-required"
   label="Name"
   sx={fieldStyle}
 />
 
 <TextField
+onChange={handleChange}
+value={formData["price"]}
+name={"price"}
   id="outlined-required"
   label="Price"
   sx={fieldStyle}
@@ -409,7 +488,7 @@ onClick={handleOpen}
         <TextField
         disabled
   id="file-upload-textfield"
-  label={fileName? '1 File uploaded': 'Upload File'}
+  label={fileName? '1 Image uploaded': 'Upload Image'}
   InputProps={{
 
     endAdornment: (
@@ -453,7 +532,9 @@ onClick={handleOpen}
   id="file-upload-button"
   type="file"
   style={{ display: 'none' }}  // Hide the actual file input
-  onChange={handleFileChange}  // Handle file change if needed
+  onChange={handleChange}
+value={formData["image"]}
+name={"image"} // Handle file change if needed
 />
   
 <Button type="submit"
