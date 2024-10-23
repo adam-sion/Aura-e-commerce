@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from "react";
 import { isAdmin } from "../../utils/roles";
 import { Navigate } from "react-router-dom";
 import { Box, Button, Divider, Grid, Input, InputAdornment, MenuItem, Modal, Stack, TextField, Typography } from "@mui/material";
@@ -12,40 +12,27 @@ import beachBack from "../../Assets/categoriesBackground.png";
 import { new_collections } from "../../data/new_collections";
 import Swal from "sweetalert2";
 import { Product } from "../../types/Product";
+import axios from "axios";
 
 
+
+type ValidationRule<T> = {
+  rule: (value: string|File|number|null) => boolean;
+  userTyped: boolean;
+};
 
 type ValidationRulesType = {
-  name: {
-    rule: (x: string) => boolean;
-    userTyped: boolean;
-  };
-  price: {
-    rule: (x: number) => boolean;
-    userTyped: boolean;
-  };
-  image: {
-    rule: (x:File)=> boolean;
-    userTyped: boolean;
-  }
-
+  name: ValidationRule<string>;
+  price: ValidationRule<number>;
+  image: ValidationRule<File>;
 };
+
 
 export const AdminDash:FC = ()=> {
     const refs = useRef<(null | HTMLDivElement)[]>([]);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
    const [modalOpen, setModalOpen] = useState<boolean>(false);
-   const [fileName, setFileName] = useState<string>('');
 
-   const handleFileChange = (e:ChangeEvent<HTMLInputElement>) => {
-     const file:File = e.target.files![0];
-     if (file) {
-       setFileName(file.name);
-       console.log(file);
-     } else {
-       setFileName(''); 
-     }
-   };
   const handleClose = ()=> {
     setModalOpen(false);
   }
@@ -103,40 +90,123 @@ const handleOpen  = ()=> {
         },
       }
 
+      const errorStyle = {
+        width:'100%',
+        input: {
+          color: 'black',  // Keeps input text color black
+        },
+        '& label': {
+          color: 'black',  // Keeps label color black
+        },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'red',  // Border color when not focused
+          },
+          '&:hover fieldset': {
+            borderColor: 'red',  // Border color on hover
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: 'red',  // Border color when focused
+          },
+        },
+        '& .MuiFormLabel-root.Mui-focused': {
+          color: 'black',  // Ensures the label stays black when focused
+        },
+      }
+
 // form logic------------------------------------------
 
+const api = axios.create({
+  baseURL:'http://localhost:4000/api'
+ })
 
-const [formData, setFormData] = useState<Omit<Product, "id">>({
+const [formData, setFormData] = useState<{name:string, price:number|null, image:File|null, category:Product["category"]}>({
   name:'',
-  price:0,
-  image: '',
+  price:null,
+  image: null,
   category: 'men'
 });
 
 const [validationRules, setValidationRules] = useState<ValidationRulesType>({
   name: {
-    rule: (x: string) =>
-      /^[a-zA-Z0-9](?!.*[_.]{2})[a-zA-Z0-9._]{1,14}[a-zA-Z0-9]$/.test(x),
+    rule: (x) =>
+      String(x).length > 0 && String(x).length < 50,
     userTyped: false,
   },
   price: {
-    rule: (x: number) =>
-      x>0 && x<100000,
+    rule: (x) =>
+        x!== null && Number(x)>0 && Number(x)<100000,
     userTyped: false,
   },
   image: {
-    rule: (x:File)=> x!==null,
+    rule: (x)=> x!==null && x instanceof File ,
     userTyped: false
   }
 
 });
 
+
+const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
+  e.preventDefault();
+
+  try {
+    const form = new FormData();
+    form.append('product', formData.image!)
+   const imgData = await api.post('/upload',form);
+   if (imgData.data.image_url === undefined) {
+    throw new Error("can't upload image");
+   }
+   const {data} = await api.post('/product', {name:formData.name, price:formData.price, gender: formData.category, img:imgData.data.image_url})
+   Swal.fire({
+    title: 'Success',
+    text: data,
+    icon: 'success',
+    confirmButtonText: 'Great',
+    backdrop: true,
+    target: document.getElementById('modal'), 
+  });
+  
+
+    setFormData({   name:'',
+      price:null,
+      image: null,
+      category: 'men'});
+    setValidationRules({
+      name: { ...validationRules.name, userTyped: false },
+      price: { ...validationRules.price, userTyped: false },
+      image: {...validationRules.image, userTyped:false}
+    });
+
+  
+  } catch (error: any) {
+    const errorMessage = error.response?.data?.message || "Can't sign up, something went wrong";
+    
+    Swal.fire({
+        title: 'Failed',
+        text: errorMessage,
+        icon: 'error',
+        confirmButtonText: 'Okay',
+    });
+}
+}
+
+
+
+const isFormValid = () => {
+  return Object.keys(validationRules).every((key) => {
+    const rule = validationRules[key as keyof ValidationRulesType].rule;
+    
+    const value:any = formData[key as keyof {name:string, price:number|null, image:File|null}];
+ return rule(value);
+  })
+};
+
+
 const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
   const { name, value } = e.target;
-if (name === 'image') {
-  handleFileChange(e);
-} else {
+
+  if (name !== "category") {
   const keyName = name as keyof ValidationRulesType;
 
   if (!validationRules[keyName].userTyped) {
@@ -148,10 +218,11 @@ if (name === 'image') {
       },
     }));
   }
-
-  setFormData({ ...formData, [name]: value });
 }
-};
+
+  setFormData({ ...formData, [name]: name==="image"? e.target.files![0] :name==="category"? value.toLowerCase(): value });
+  console.log(formData);
+}
 
     return !isAdmin()? <Navigate to="/"/>:(
         <Box
@@ -379,6 +450,7 @@ onClick={handleOpen}
 
 
         <Modal
+        id='modal'
         open={modalOpen}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -408,7 +480,9 @@ onClick={handleOpen}
   />
 
 
-<Box sx={{ width: '100%', height:'100%', 
+<Box 
+onSubmit={handleSubmit}
+sx={{ width: '100%', height:'100%', 
      position: 'absolute',  
      right: 0, 
      bottom: 0,
@@ -417,7 +491,7 @@ onClick={handleOpen}
      transform: 'translate(-50%, 0)'}} component={'form'} display={'flex'} justifyContent={'center'}>
         <Stack
           direction="column"
-          spacing={'10%'}
+          spacing={'13%'}
           sx={{
             justifyContent: "flex-start",
             alignItems: "center",
@@ -449,12 +523,13 @@ onClick={handleOpen}
           </Box>
 
      <TextField
+  
      onChange={handleChange}
      value={formData["name"]}
      name={"name"}
   id="outlined-required"
   label="Name"
-  sx={fieldStyle}
+  sx={validationRules["name"].userTyped && !validationRules["name"].rule(formData["name"])?errorStyle:fieldStyle}
 />
 
 <TextField
@@ -463,15 +538,17 @@ value={!validationRules["price"].userTyped ? "": formData["price"]}
 name={"price"}
   id="outlined-required"
   label="Price"
-  sx={fieldStyle}
+  sx={validationRules["price"].userTyped && !validationRules["price"].rule(formData["price"])?errorStyle:fieldStyle}
 />
 
 
 <TextField
+ onChange={handleChange}
           select
           label="Category"
           defaultValue="Men"
           sx={fieldStyle}
+          name="category"
         >
           {categories.map((option) => (
             <MenuItem key={option.name} value={option.name}>
@@ -488,7 +565,7 @@ name={"price"}
         <TextField
         disabled
   id="file-upload-textfield"
-  label={fileName? '1 Image uploaded': 'Upload Image'}
+  label={formData["image"]?.name? '1 Image uploaded': 'Upload Image'}
   InputProps={{
 
     endAdornment: (
@@ -525,7 +602,8 @@ name={"price"}
     '& .MuiFormLabel-root': {
       color: 'black', 
     },
-  }}
+  }
+}
 />
 <input
   accept="image/*"
@@ -533,7 +611,6 @@ name={"price"}
   type="file"
   style={{ display: 'none' }}  // Hide the actual file input
   onChange={handleChange}
-value={formData["image"]}
 name={"image"} // Handle file change if needed
 />
   
@@ -555,6 +632,8 @@ name={"image"} // Handle file change if needed
                 boxShadow: 6,
               },
             }}
+
+            disabled={!isFormValid()}
           >
             Add
           </Button>

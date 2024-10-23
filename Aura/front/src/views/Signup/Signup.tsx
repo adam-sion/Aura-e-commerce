@@ -8,6 +8,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useAuth } from '../../contexts/AuthContext';
 import { didUserSign } from '../../utils/roles';
+import { useLoading } from '../../contexts/loadingContext';
 
 
 
@@ -35,6 +36,7 @@ export const Signup:FC = ()=> {
   });
 
   const {login} = useAuth();
+  const {setIsLoading} = useLoading();
   
   const [validationRules, setValidationRules] = useState<ValidationRulesType>({
     username: {
@@ -70,21 +72,24 @@ export const Signup:FC = ()=> {
   const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
     e.preventDefault();
     try {
+      setIsLoading(true);
      const {data} = await api.post('',formData);
-      Swal.fire({
-        title: 'Success',
-        text: data,
-        icon: 'success',
-        confirmButtonText: 'Great',
-      });
+     
 
       setFormData({ username: '', password: '' });
       setValidationRules({
         username: { ...validationRules.username, userTyped: false },
         password: { ...validationRules.password, userTyped: false }
       });
+    
+     await login(formData);
 
-     login(formData);
+     Swal.fire({
+      title: 'Success',
+      text: data,
+      icon: 'success',
+      confirmButtonText: 'Great',
+    });
     
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || "Can't sign up, something went wrong";

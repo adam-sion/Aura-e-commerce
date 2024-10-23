@@ -3,6 +3,7 @@ import { User } from "../types/User";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { isAdmin } from "../utils/roles";
+import { useLoading } from "./loadingContext";
 
 
 
@@ -17,6 +18,7 @@ const AuthContext = createContext<AuthContextType|undefined>(undefined);
 const AuthProvider:FC<{children:ReactNode}> = ({children}) => {
 
 const navigate = useNavigate();
+const {setIsLoading} = useLoading();
 
 const [username, setUsername] = useState<string | null>(() => {
     const userData = localStorage.getItem('userData');
@@ -30,12 +32,16 @@ const login = async(user:User):Promise<boolean>=> {
        })
 
   try {
+    setIsLoading(true);
+
    const {data} = await api.post('',user);
    localStorage.setItem('userData', JSON.stringify({username:data.username, token:data.token}));
    setUsername(data.username);
    navigate(isAdmin()? "/adminDash":"/");
+   setIsLoading(false);
    return true;
   } catch (error:any) {
+    setIsLoading(false);
     return false;
   }
  }

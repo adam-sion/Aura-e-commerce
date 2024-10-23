@@ -23,4 +23,5 @@ const upload = multer({storage:storage});
 
 APIRouter.use('/images', express.static('upload/images'));
 
+
 APIRouter.post('/upload', upload.single('product'), uploadImageHandler);
