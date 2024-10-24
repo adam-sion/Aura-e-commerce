@@ -514,7 +514,7 @@ onClick={handleOpen}
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '30%',
-  height:'62%',
+  height:'70vh',
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius:'20px'
