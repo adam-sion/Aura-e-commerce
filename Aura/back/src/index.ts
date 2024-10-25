@@ -12,58 +12,34 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', (req:Request, res:Response)=> {
+app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to Aura server!');
-})
+});
 
 app.use(express.json());
 app.use(cors());
-app.use('/images', express.static('upload/images')); // Serve static files
-
+app.use('/images', express.static('upload/images')); 
 
 app.use('/api', APIRouter);
 app.use('/auth', AUTHRouter);
-
-
 app.use(errorHandler);
 
 
-const startServer = async () => {
+const initializeDatabase = async () => {
     try {
-
         await AppDataSource.initialize();
         console.log("Database connection established.");
-
-        app.listen(port, () => {
-            console.log(`⚡ Server is running at http://localhost:${port}`);
-        });
     } catch (error) {
         console.error("Error during Data Source initialization", error);
-        process.exit(1); 
+        throw error; 
     }
 };
 
 
 export default async (req: Request, res: Response) => {
-
-    if (process.env.NODE_ENV !== "production") {
-        await startServer();
-    } else {
-
-        try {
-            if (!AppDataSource.isInitialized) {
-                await AppDataSource.initialize();
-                console.log("Database connection established.");
-            }
-            app(req, res); 
-        } catch (error) {
-            console.error("Error during Data Source initialization", error);
-            res.status(500).send("Internal Server Error");
-        }
+    
+    if (process.env.NODE_ENV === "production") {
+        await initializeDatabase();
     }
+    app(req, res);
 };
-
-
-if (process.env.NODE_ENV !== "production") {
-    startServer();
-}
