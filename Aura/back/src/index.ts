@@ -12,6 +12,10 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.get('/', (req:Request, res:Response)=> {
+    res.send('Welcome to Aura server!');
+})
+
 app.use(express.json());
 app.use(cors());
 app.use('/images', express.static('upload/images')); // Serve static files
