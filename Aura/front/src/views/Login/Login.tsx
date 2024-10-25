@@ -57,7 +57,7 @@ export const Login:FC = ()=> {
             justifyContent: "flex-start",
             alignItems: "center",
             marginTop: '7vh',
-            width: '300px',
+            width: '17%',
             background: 'linear-gradient(to bottom, #add8e6, #ffcccb)',
             borderRadius: '8px', 
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
