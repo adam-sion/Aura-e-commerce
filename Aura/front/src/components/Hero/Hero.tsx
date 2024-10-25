@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { FC } from "react";
 import heroPic from "../../Assets/hero_image.png";
 import handPic from "../../Assets/hand_icon.png";

@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { AppDataSource } from "../src/data-source"; // Import your data source
-import { APIRouter } from "../src/routes/api";
-import { AUTHRouter } from "../src/routes/auth";
-import { errorHandler } from "../src/middlewares/error.middleware";
+import { AppDataSource } from "../data-source"; // Import your data source
+import { APIRouter } from "../routes/api";
+import { AUTHRouter } from "../routes/auth";
+import { errorHandler } from "../middlewares/error.middleware";
 
 
 dotenv.config();
