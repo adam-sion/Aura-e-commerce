@@ -3,9 +3,13 @@
     "buildCommand": "npm run build",
     "outputDirectory": "dist",
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "dist/index.js"
-      }
+        {
+            "src": "/images/(.*)",
+            "dest": "/upload/images/$1"
+        },
+        {
+            "src": "/(.*)", 
+            "dest": "dist/index.js"
+        }
     ]
-  }
+}
