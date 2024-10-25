@@ -448,7 +448,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 
 {/* products */}
-{Array.isArray(productMap) ?
+{productMap!== null ?
  productMap[category.name.toLowerCase()].map((item:Product, index)=> (
         <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
      <Grid sx={{marginTop:'1vh'}} container spacing={2}>
