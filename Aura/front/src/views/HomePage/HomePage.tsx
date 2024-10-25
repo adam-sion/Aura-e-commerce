@@ -1,6 +1,6 @@
 
 
-import { FC, useEffect, useRef } from "react"
+import { FC, useRef } from "react"
 import { Hero } from "../../components/Hero/Hero.tsx"
 import { Box, Divider, Typography } from "@mui/material";
 import { Gallery } from "../../components/Gallery/Gallery.tsx";

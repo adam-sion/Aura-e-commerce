@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import { useAuth } from "../../contexts/AuthContext";
 import { User } from "../../types/User";
 import { didUserSign } from "../../utils/roles";
-import { HomePage } from "../HomePage/HomePage";
 
 export const Login:FC = ()=> {
     const [formData, setFormData] = useState<User>({

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from "react";
 import { isAdmin } from "../../utils/roles";
 import { Navigate } from "react-router-dom";
-import { Box, Button, Divider, Grid, Input, InputAdornment, MenuItem, Modal, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, InputAdornment, MenuItem, Modal, Stack, TextField, Typography } from "@mui/material";
 import { categories } from "../../utils/data";
 import "./AdminDash.css";
 import CloseIcon from '@mui/icons-material/Close';
@@ -16,15 +16,15 @@ import { useFetchCategoryProducts } from "../../api/hooks/useFetchCategoryProduc
 
 
 
-type ValidationRule<T> = {
+type ValidationRule = {
   rule: (value: string|File|number|null) => boolean;
   userTyped: boolean;
 };
 
 type ValidationRulesType = {
-  name: ValidationRule<string>;
-  price: ValidationRule<number>;
-  image: ValidationRule<File>;
+  name: ValidationRule;
+  price: ValidationRule;
+  image: ValidationRule;
 };
 
 
