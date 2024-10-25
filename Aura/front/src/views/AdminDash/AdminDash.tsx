@@ -233,7 +233,7 @@ const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
     
     Swal.fire({
       title: 'Failed',
-      text: error,
+      text: errorMessage,
       icon: 'error',
       confirmButtonText: 'Great',
       backdrop: true,
