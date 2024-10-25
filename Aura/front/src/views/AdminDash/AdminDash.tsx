@@ -33,7 +33,7 @@ export const AdminDash:FC = ()=> {
 
 
   const handleRemove = async (product:Product)=> {
-    const apiRemove = axios.create({baseURL:`http://localhost:4000/api/product/${product.id}`});
+    const apiRemove = axios.create({baseURL:`${import.meta.env.VITE_API_URL}/api/product/${product.id}`});
     try {
     const {data} = await apiRemove.delete('');
     product.category ==='kids'? fetchKidsProducts(): 
@@ -165,7 +165,7 @@ const handleOpen  = ()=> {
 
 
 const api = axios.create({
-  baseURL:'http://localhost:4000/api'
+  baseURL:`${import.meta.env.VITE_API_URL}/api`
  })
 
 const [formData, setFormData] = useState<{name:string, price:number|null, image:File|null, category:Product["category"]}>({
@@ -229,13 +229,15 @@ const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
 
   
   } catch (error: any) {
-    const errorMessage = error.response?.data?.message || "Can't sign up, something went wrong";
+    const errorMessage = error.response?.data?.message || "Can't add product, something went wrong";
     
     Swal.fire({
-        title: 'Failed',
-        text: errorMessage,
-        icon: 'error',
-        confirmButtonText: 'Okay',
+      title: 'Failed',
+      text: error,
+      icon: 'error',
+      confirmButtonText: 'Great',
+      backdrop: true,
+      target: document.getElementById('modal'), 
     });
 }
 }
