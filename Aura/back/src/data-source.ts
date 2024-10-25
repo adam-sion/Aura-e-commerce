@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || "postgres",
 
 
-  ssl: { rejectUnauthorized: false } ,
+  ssl: false ,
 
   entities: [path.join(__dirname, 'entities', '**/*.entity.{ts,js}')],
   
