@@ -39,7 +39,7 @@ const initializeDatabase = async () => {
 export default async (req: Request, res: Response) => {
     
     if (process.env.NODE_ENV === "production") {
-        // await initializeDatabase();
+        await initializeDatabase();
     }
     app(req, res);
 };
