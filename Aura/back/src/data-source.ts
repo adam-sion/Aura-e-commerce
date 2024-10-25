@@ -11,6 +11,11 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD || "postgres", 
   database: process.env.DB_NAME || "postgres", 
 
+  // Ensure you adjust the SSL settings for Supabase
+  ssl: {
+    rejectUnauthorized: false,
+  },
+
   entities: [path.join(__dirname, 'entities', '**/*.entity.{ts,js}')],
   
   schema: "aura", 
