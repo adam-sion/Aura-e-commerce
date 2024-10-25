@@ -9,7 +9,6 @@ import SwitchAccessShortcutIcon from '@mui/icons-material/SwitchAccessShortcut';
 import AddIcon from '@mui/icons-material/Add';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import beachBack from "../../Assets/categoriesBackground.png";
-import { new_collections } from "../../data/new_collections";
 import Swal from "sweetalert2";
 import { Product } from "../../types/Product";
 import axios from "axios";
@@ -119,52 +118,51 @@ const handleOpen  = ()=> {
       const fieldStyle = {
         width:'100%',
         input: {
-          color: 'black',  // Keeps input text color black
+          color: 'black',  
         },
         '& label': {
-          color: 'black',  // Keeps label color black
+          color: 'black', 
         },
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderColor: 'black',  // Border color when not focused
+            borderColor: 'black', 
           },
           '&:hover fieldset': {
-            borderColor: 'black',  // Border color on hover
+            borderColor: 'black',  
           },
           '&.Mui-focused fieldset': {
-            borderColor: 'black',  // Border color when focused
+            borderColor: 'black',  
           },
         },
         '& .MuiFormLabel-root.Mui-focused': {
-          color: 'black',  // Ensures the label stays black when focused
+          color: 'black',  
         },
       }
 
       const errorStyle = {
         width:'100%',
         input: {
-          color: 'black',  // Keeps input text color black
+          color: 'black',  
         },
         '& label': {
-          color: 'black',  // Keeps label color black
+          color: 'black',  
         },
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderColor: 'red',  // Border color when not focused
+            borderColor: 'red',  
           },
           '&:hover fieldset': {
-            borderColor: 'red',  // Border color on hover
+            borderColor: 'red',  
           },
           '&.Mui-focused fieldset': {
-            borderColor: 'red',  // Border color when focused
+            borderColor: 'red',  
           },
         },
         '& .MuiFormLabel-root.Mui-focused': {
-          color: 'black',  // Ensures the label stays black when focused
+          color: 'black',  
         },
       }
 
-// form logic------------------------------------------
 
 const api = axios.create({
   baseURL:'http://localhost:4000/api'
@@ -288,8 +286,8 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       >
  <Box 
   sx={{ 
-    width: { xs: '90%', sm: '70%', md: '60%', lg: '50%' }, // Responsive width for different screens
-    height: { xs: '150vh', sm: '100vh', md: '50vh', lg:'60vh' }, // Set to auto for small screens
+    width: { xs: '90%', sm: '70%', md: '60%', lg: '50%' }, 
+    height: { xs: '150vh', sm: '100vh', md: '50vh', lg:'60vh' },
     position: 'relative',
     display: "flex",
     flexDirection: 'row',
@@ -306,16 +304,16 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       height: '100%', 
       zIndex: -1,
       borderRadius: '20px',
-      position: 'absolute', // Keeps it covering the box
+      position: 'absolute', 
       top: 0,
       left: 0,
-      objectFit: 'cover', // Ensure it covers without distortion
+      objectFit: 'cover', 
     }} 
   />
   <Box 
     sx={{ 
       width: '95%',
-      height: { xs: '100%', sm: '80%', md:'100%' }, // Adjust height for small screens
+      height: { xs: '100%', sm: '80%', md:'100%' }, 
       position: 'absolute',  
       right: 0, 
       bottom: 0,
@@ -323,7 +321,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       top: '50%',
       transform: 'translate(-50%, -50%)',
       overflowY: 'auto', 
-      padding: '10px' // Add padding around the content
+      padding: '10px' 
     }}
   >
     <Grid 
@@ -340,14 +338,14 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         categories.map((category, index) => (
           <Grid 
             item 
-            xs={8} sm={6} md={4} // Full width for small screens, adjust for larger
+            xs={8} sm={6} md={4} 
             key={category.name} 
             sx={{ 
               display: 'flex', 
               flexDirection:{md:'row', lg:'row', sm:'column', xs:'column'},
               justifyContent: {xs:'flex-start',md:'center'}, 
               alignItems: 'center',
-              padding: { xs: '5px', sm: '0' } // Adjust padding for small screens
+              padding: { xs: '5px', sm: '0' } 
             }} 
           >
             <Box 
@@ -358,9 +356,9 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
                 alignItems: 'center', 
                 position: 'relative', 
                 overflow: 'hidden', 
-                padding: '10px', // Padding between the image and the container
-                backgroundColor: 'rgba(0, 0, 0, 0.5)', // Grey transparent background
-                borderRadius: '20px' // Match image border radius
+                padding: '10px', 
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                borderRadius: '20px' 
               }} 
               className="category-card"
             >
@@ -370,7 +368,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
                   borderRadius: '20px', 
                   width: '100%', 
                   height: '100%', 
-                  objectFit: 'cover' // Ensure image covers the box without distortion
+                  objectFit: 'cover' 
                 }}  
                 src={category.pic} 
                 alt="" 
@@ -565,7 +563,7 @@ onClick={handleOpen}
       bgcolor: 'background.paper',
       boxShadow: 24,
       borderRadius: '20px',
-      overflow: 'hidden', // Prevent content from overflowing
+      overflow: 'hidden', 
     }}
   >
     <img
@@ -602,9 +600,9 @@ onClick={handleOpen}
           justifyContent: "flex-start",
           alignItems: "center",
           width: { xs: '90%', sm: '70%', md: '60%', lg: '50%' },
-          maxHeight: '90%', // Limit Stack height to avoid overflow
+          maxHeight: '90%', 
           padding: { xs: 2, sm: 3, md: 4, lg: 5 },
-          overflowY: 'auto', // Enable scrolling if content overflows
+          overflowY: 'auto', 
         }}
       >
         <Box
@@ -722,7 +720,7 @@ onClick={handleOpen}
             fontWeight: 'bold',
             width: '100%',
             boxShadow: 3,
-            marginTop: 'auto', // Push the button to the bottom of the Stack
+            marginTop: 'auto', 
             marginBottom: '5vh',
             '&:hover': {
               backgroundColor: '#d32f2f',

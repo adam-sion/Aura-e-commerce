@@ -32,7 +32,7 @@ export const Hero: FC<HeroProps> = ({ scroll }) => {
           textAlign: { xs: 'center', md: 'left' },
           width: { xs: '90%', md: '35%', lg: '30%' }, 
           maxWidth: '500px',
-          ml: { md: '20%', lg: '10%' }, // Adjust left margin for larger screens
+          ml: { md: '20%', lg: '10%' }, 
           mr: { md: '5%' },
         }}
         component="div"
@@ -112,9 +112,9 @@ export const Hero: FC<HeroProps> = ({ scroll }) => {
         src={heroPic}
         alt="Hero"
         sx={{
-          height: { xs: '40vh', sm: '50vh', md: '90%', lg: '80%' }, // Adjusted height for large screens
+          height: { xs: '40vh', sm: '50vh', md: '90%', lg: '80%' }, 
           width: 'auto',
-          maxWidth: { xs: '90%', md: '100%' }, // Allow max width adjustment
+          maxWidth: { xs: '90%', md: '100%' },
           objectFit: 'contain',
           mt: { xs: 4, md: 0 },
         }}
