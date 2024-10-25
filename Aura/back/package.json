@@ -2,9 +2,9 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/api/index.ts",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon src/api/index.ts",
     "build": "rimraf dist && tsc",
     "start": "node dist/index.js",
     "ts.check": "tsc --project tsconfig.json",
