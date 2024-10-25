@@ -29,7 +29,7 @@ const [username, setUsername] = useState<string | null>(() => {
 
 const login = async(user:User):Promise<boolean>=> {
     const api = axios.create({
-        baseURL:'http://localhost:4000/auth/signin'
+        baseURL:`${import.meta.env.VITE_API_URL}/auth/signin`
        })
 
   try {

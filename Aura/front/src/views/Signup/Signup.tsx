@@ -27,7 +27,7 @@ type ValidationRulesType = {
 export const Signup:FC = ()=> {
 
  const api = axios.create({
-  baseURL:'http://localhost:4000/auth/signup'
+  baseURL:`${import.meta.env.VITE_API_URL}/auth/signup`
  })
 
   const [formData, setFormData] = useState<User>({

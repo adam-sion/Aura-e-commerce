@@ -6,7 +6,7 @@ import { useLoading } from "../../contexts/loadingContext";
 
 export const useFetchSaleProducts = (): [Product[], ()=> Promise<void>]=> {
 
-const api = axios.create({baseURL:`http://localhost:4000/api/products/sale`});
+const api = axios.create({baseURL:`${import.meta.env.VITE_API_URL}/api/products/sale`});
 const [saleProducts, setSaleProducts] = useState<Product[]>([]);
 const {setIsLoading} = useLoading();
 
