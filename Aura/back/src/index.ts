@@ -38,14 +38,15 @@ const initializeDatabase = async () => {
 
 export default async (req: Request, res: Response) => {
     
-      await initializeDatabase();
-    
+    if (process.env.NODE_ENV === "production") {
+        await initializeDatabase();
+    }
     app(req, res);
 };
 
-// if (process.env.NODE_ENV !== "production") {
-//     app.listen(port, async () => {
-//         await initializeDatabase();
-//         console.log(`⚡ Server is running at http://localhost:${port}`);
-//     });
-// }
+if (process.env.NODE_ENV !== "production") {
+    app.listen(port, async () => {
+        await initializeDatabase();
+        console.log(`⚡ Server is running at http://localhost:${port}`);
+    });
+}
