@@ -39,7 +39,7 @@ export const Hero: FC<HeroProps> = ({ scroll }) => {
       >
         <Box
           sx={{
-            fontSize: { xs: '5vw', sm: '4vw', md: '1.5vw' },
+            fontSize: { xs: '5vw', sm: '3vw', md: '1.5vw' },
             m: 1,
             fontFamily: '"Montserrat", sans-serif',
             fontWeight: '600',
@@ -53,7 +53,7 @@ export const Hero: FC<HeroProps> = ({ scroll }) => {
 
         <Box
           sx={{
-            fontSize: { xs: '8vw', sm: '5vw', md: '3.5vw', lg:'2.5vw' },
+            fontSize: { xs: '8vw', sm: '4vw', md: '3.5vw', lg:'2.5vw' },
             m: 1,
             whiteSpace: 'pre-line',
             lineHeight: 1.2,
@@ -70,6 +70,7 @@ export const Hero: FC<HeroProps> = ({ scroll }) => {
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
+            justifyContent:{sm:'center', md:'flex-start'},
             alignItems: { xs: 'center', md: 'flex-start' },
             width: { xs: '100%', sm: 'auto' },
             mt: 2,
@@ -88,7 +89,7 @@ export const Hero: FC<HeroProps> = ({ scroll }) => {
           >
             <Box
               sx={{
-                fontSize: { xs: '4vw', sm:'3vw', md: '1.5vh' },
+                fontSize: { xs: '4vw', sm:'2vw', md: '1.5vh' },
                 fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
                 color: '#FF69B4',
                 textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
