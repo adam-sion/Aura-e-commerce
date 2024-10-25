@@ -286,15 +286,16 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
      
         }}
       >
-      <Box 
+ <Box 
   sx={{ 
-    width: '40%', 
-    height: '40vh',
+    width: { xs: '90%', sm: '70%', md: '60%', lg: '50%' }, // Responsive width for different screens
+    height: { xs: '150vh', sm: '100vh', md: '50vh', lg:'60vh' }, // Set to auto for small screens
     position: 'relative',
     display: "flex",
     flexDirection: 'row',
     justifyContent: 'center',
-         marginBottom:'7vh'
+    marginBottom: '7vh',
+    overflow: 'hidden' 
   }}
 >
   <img 
@@ -304,61 +305,106 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       width: '100%', 
       height: '100%', 
       zIndex: -1,
-      borderRadius: '20px'
+      borderRadius: '20px',
+      position: 'absolute', // Keeps it covering the box
+      top: 0,
+      left: 0,
+      objectFit: 'cover', // Ensure it covers without distortion
     }} 
   />
-   <Box sx={{ width: '95%',
-   height:'80%', 
+  <Box 
+    sx={{ 
+      width: '95%',
+      height: { xs: '100%', sm: '80%', md:'100%' }, // Adjust height for small screens
       position: 'absolute',  
       right: 0, 
       bottom: 0,
       left: '50%',
-      top:'50%',
-      transform: 'translate(-50%, -50%)'}}>
-  <Grid 
-    container 
-    spacing={2} 
-    sx={{ 
-     height:'100%'
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
+      overflowY: 'auto', 
+      padding: '10px' // Add padding around the content
     }}
-    alignItems={'center'}
   >
-    {
-      categories.map((category, index) => (
-        <Grid item sm={4} xs={4} md={4} key={category.name} sx={{ height: '100%' }}>
-          <Box sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', overflow: 'hidden' }} className="category-card">
-    <img className="category-img" style={{ borderRadius: '20px' }}  src={category.pic} alt="" />
+    <Grid 
+      container 
+      spacing={2} 
+      sx={{ 
+        height: '100%',
+        flexDirection: { xs: 'row', sm: 'row' }, 
+      }}
+      alignItems={'center'}
+      justifyContent={'center'}
+    >
+      {
+        categories.map((category, index) => (
+          <Grid 
+            item 
+            xs={8} sm={6} md={4} // Full width for small screens, adjust for larger
+            key={category.name} 
+            sx={{ 
+              display: 'flex', 
+              flexDirection:{md:'row', lg:'row', sm:'column', xs:'column'},
+              justifyContent: {xs:'flex-start',md:'center'}, 
+              alignItems: 'center',
+              padding: { xs: '5px', sm: '0' } // Adjust padding for small screens
+            }} 
+          >
+            <Box 
+              sx={{ 
+                height: '60%', 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                position: 'relative', 
+                overflow: 'hidden', 
+                padding: '10px', // Padding between the image and the container
+                backgroundColor: 'rgba(0, 0, 0, 0.5)', // Grey transparent background
+                borderRadius: '20px' // Match image border radius
+              }} 
+              className="category-card"
+            >
+              <img 
+                className="category-img" 
+                style={{ 
+                  borderRadius: '20px', 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover' // Ensure image covers the box without distortion
+                }}  
+                src={category.pic} 
+                alt="" 
+              />
 
-    <Button 
-    onClick={()=> scrollToRef(index)}
-    sx={{ 
-        position: 'absolute', 
-        top: '50%', 
-        left: '50%', 
-        transform: 'translate(-50%, -50%)',
-        color: 'white', 
-        fontSize: '24px', 
-        opacity: 0, 
-        transition: 'opacity 0.3s ease', 
-        backgroundColor: 'rgba(0, 0, 0, 0.7)', 
-        padding: '10px 20px', 
-        borderRadius: '10px', 
-        textAlign: 'center',
-         
-    }} 
-    className="category-name"
->
-    {category.name}
-</Button>
+              <Button 
+                onClick={() => scrollToRef(index)}
+                sx={{ 
+                  position: 'absolute', 
+                  top: '50%', 
+                  left: '50%', 
+                  transform: 'translate(-50%, -50%)',
+                  color: 'white', 
+                  fontSize: '24px', 
+                  opacity: 0, 
+                  transition: 'opacity 0.3s ease', 
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+                  padding: '10px 20px', 
+                  borderRadius: '10px', 
+                  textAlign: 'center',
+                }} 
+                className="category-name"
+              >
+                {category.name}
+              </Button>
 
+            </Box>
+          </Grid>
+        ))
+      }
+    </Grid>
+  </Box>
 </Box>
 
-        </Grid>
-      ))
-    }
-  </Grid>
- </Box>
-</Box>
 
 
 <Box sx={{marginTop:'4vh',  width: '40%'}}>
@@ -379,7 +425,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 <Grid sx={{marginTop:'1vh'}} container spacing={2}>
           <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Products</Box>
+            <Box sx={{ padding: 2, fontFamily: 'cursive',  }}>Products</Box>
           </Grid>
           <Grid item xs={3}>
             <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Title</Box>
@@ -407,7 +453,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
      <Grid sx={{marginTop:'1vh'}} container spacing={2}>
           <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}> <img height={'100%'} width={'100%'} src={item.img} alt={item.name} /></Box>
+            <Box sx={{ padding:{md:2, lg:2}, fontFamily: 'cursive' }}> <img height={'100%'} width={'100%'} src={item.img} alt={item.name} /></Box>
           </Grid>
           <Grid item xs={3}>
             <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.name}</Box>
@@ -502,100 +548,107 @@ onClick={handleOpen}
 
 
         <Modal
-        id='modal'
-        open={modalOpen}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+  id='modal'
+  open={modalOpen}
+  onClose={handleClose}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+>
+  <Box
+    sx={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: { xs: '90%', sm: '70%', md: '50%', lg: '40%' },
+      height: '90vh',
+      bgcolor: 'background.paper',
+      boxShadow: 24,
+      borderRadius: '20px',
+      overflow: 'hidden', // Prevent content from overflowing
+    }}
+  >
+    <img
+      src={beachBack}
+      alt="Background"
+      style={{
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+        borderRadius: '20px',
+      }}
+    />
+
+    <Box
+      onSubmit={handleSubmit}
+      sx={{
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
+        top: 0,
+        left: '50%',
+        transform: 'translate(-50%, 0)',
+      }}
+      component={'form'}
+      display={'flex'}
+      justifyContent={'center'}
+    >
+      <Stack
+        direction="column"
+        spacing={'13%'}
+        sx={{
+          justifyContent: "flex-start",
+          alignItems: "center",
+          width: { xs: '90%', sm: '70%', md: '60%', lg: '50%' },
+          maxHeight: '90%', // Limit Stack height to avoid overflow
+          padding: { xs: 2, sm: 3, md: 4, lg: 5 },
+          overflowY: 'auto', // Enable scrolling if content overflows
+        }}
       >
-        
-        <Box sx={{ position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '30%',
-  height:'70vh',
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  borderRadius:'20px'
-}}>
-      
-      <img 
-    src={beachBack} 
-    alt="Background" 
-    style={{ 
-      width: '100%', 
-      height: '100%', 
-      zIndex: -1,
-        borderRadius:'20px'
-    }} 
-  />
-
-
-<Box 
-onSubmit={handleSubmit}
-sx={{ width: '100%', height:'100%', 
-     position: 'absolute',  
-     right: 0, 
-     bottom: 0,
-     top:0,
-     left: '50%',
-     transform: 'translate(-50%, 0)'}} component={'form'} display={'flex'} justifyContent={'center'}>
-        <Stack
-          direction="column"
-          spacing={'13%'}
+        <Box
           sx={{
-            justifyContent: "flex-start",
-            alignItems: "center",
-            width: '50%',
-            padding:3,
+            padding: '3px 10px',
+            backgroundColor: 'transparent',
+            borderRadius: '8px',
+            textAlign: 'center',
+            width: '300px',
+            transition: 'background-color 0.3s ease',
           }}
         >
-
-<Box
+          <Typography
+            variant="h4"
             sx={{
-              padding: '3px 10px', 
-              backgroundColor: 'transparent', 
-              borderRadius: '8px', 
-              textAlign: 'center',
-              width: '300px',
-              transition: 'background-color 0.3s ease',
+              fontWeight: 'bold',
+              color: 'black',
+              fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
             }}
           >
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: 'bold',
-                color: 'black',
-                fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
-              }}
-            >
-              Add product
-            </Typography>
-          </Box>
+            Add product
+          </Typography>
+        </Box>
 
-     <TextField
-  
-     onChange={handleChange}
-     value={formData["name"]}
-     name={"name"}
-  id="outlined-required"
-  label="Name"
-  sx={validationRules["name"].userTyped && !validationRules["name"].rule(formData["name"])?errorStyle:fieldStyle}
-/>
+        <TextField
+          onChange={handleChange}
+          value={formData["name"]}
+          name={"name"}
+          id="outlined-required"
+          label="Name"
+          sx={validationRules["name"].userTyped && !validationRules["name"].rule(formData["name"]) ? errorStyle : fieldStyle}
+        />
 
-<TextField
-onChange={handleChange}
-value={!validationRules["price"].userTyped ? "": formData["price"]}
-name={"price"}
-  id="outlined-required"
-  label="Price"
-  sx={validationRules["price"].userTyped && !validationRules["price"].rule(formData["price"])?errorStyle:fieldStyle}
-/>
+        <TextField
+          onChange={handleChange}
+          value={!validationRules["price"].userTyped ? "" : formData["price"]}
+          name={"price"}
+          id="outlined-required"
+          label="Price"
+          sx={validationRules["price"].userTyped && !validationRules["price"].rule(formData["price"]) ? errorStyle : fieldStyle}
+        />
 
-
-<TextField
- onChange={handleChange}
+        <TextField
+          onChange={handleChange}
           select
           label="Category"
           defaultValue="Men"
@@ -609,92 +662,83 @@ name={"price"}
           ))}
         </TextField>
 
-
-      
-
-
-
         <TextField
-        disabled
-  id="file-upload-textfield"
-  label={formData["image"]?.name? '1 Image uploaded': 'Upload Image'}
-  InputProps={{
-
-    endAdornment: (
-      <InputAdornment position="end">
-        <label htmlFor="file-upload-button">
-          <Button
-            component="span"
-            sx={{
-              backgroundColor: 'transparent',  // Transparent background
-              border: '2px solid black',       // Black border
-              color: 'black',                  // Button text color
-              borderRadius: '20px',            // Rounded corners
-              padding: '8px 16px',             // Padding around text
-              cursor: 'pointer',               // Pointer cursor
-              '&:hover': {
-                backgroundColor: '#f0f0f0',    // Light gray background on hover
+          disabled
+          id="file-upload-textfield"
+          label={formData["image"]?.name ? '1 Image uploaded' : 'Upload Image'}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <label htmlFor="file-upload-button">
+                  <Button
+                    component="span"
+                    sx={{
+                      backgroundColor: 'transparent',
+                      border: '2px solid black',
+                      color: 'black',
+                      borderRadius: '20px',
+                      padding: '8px 16px',
+                      cursor: 'pointer',
+                      '&:hover': {
+                        backgroundColor: '#f0f0f0',
+                      },
+                    }}
+                  >
+                    <FileUploadIcon />
+                  </Button>
+                </label>
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            ...fieldStyle,
+            '& .MuiOutlinedInput-root': {
+              '&.Mui-disabled fieldset': {
+                borderColor: 'black',
               },
-            }}
-          >
-            <FileUploadIcon/>
-          </Button>
-        </label>
-      </InputAdornment>
-    ),
-  }}
-  sx={{
-    ...fieldStyle,
-    '& .MuiOutlinedInput-root': {
-    
-      '&.Mui-disabled fieldset': {
-        borderColor: 'black', 
-      },
-    },
-    '& .MuiFormLabel-root': {
-      color: 'black', 
-    },
-  }
-}
-/>
-<input
-  accept="image/*"
-  id="file-upload-button"
-  type="file"
-  style={{ display: 'none' }}  // Hide the actual file input
-  onChange={handleChange}
-name={"image"} // Handle file change if needed
-/>
-  
-<Button type="submit"
-            variant="contained"
-            sx={{
-              backgroundColor: '#f44336',
-              color: 'white',
-              borderRadius: '20px',
-              padding: { xs: '8px 16px', md: '10px 20px' },
-              fontSize: { xs: '14px', md: '18px' },
-              fontWeight: 'bold',
-              width:'100%',
-              boxShadow: 3,
-              marginTop: '7vh',
-              marginBottom: '5vh',
-              '&:hover': {
-                backgroundColor: '#d32f2f',
-                boxShadow: 6,
-              },
-            }}
-
-            disabled={!isFormValid()}
-          >
-            Add
-          </Button>
+            },
+            '& .MuiFormLabel-root': {
+              color: 'black',
+            },
+          }}
+        />
+        <input
+          accept="image/*"
+          id="file-upload-button"
+          type="file"
+          style={{ display: 'none' }}
+          onChange={handleChange}
+          name={"image"}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            backgroundColor: '#f44336',
+            color: 'white',
+            borderRadius: '20px',
+            padding: { xs: '8px 16px', md: '10px 20px' },
+            fontSize: { xs: '14px', md: '18px' },
+            fontWeight: 'bold',
+            width: '100%',
+            boxShadow: 3,
+            marginTop: 'auto', // Push the button to the bottom of the Stack
+            marginBottom: '5vh',
+            '&:hover': {
+              backgroundColor: '#d32f2f',
+              boxShadow: 6,
+            },
+          }}
+          disabled={!isFormValid()}
+        >
+          Add
+        </Button>
+      </Stack>
+    </Box>
+  </Box>
+</Modal>
 
 
-</Stack>
-</Box>
-        </Box>
-      </Modal>
       </Box>
       
     )

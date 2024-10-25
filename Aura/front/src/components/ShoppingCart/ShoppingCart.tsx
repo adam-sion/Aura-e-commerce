@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Grid } from "@mui/material";
 import { FC } from "react";
-import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
+import { useShoppingList } from "../../contexts/ShoppingCartContext.tsx";
 import Swal from 'sweetalert2';
 import CloseIcon from '@mui/icons-material/Close';
 import { Order } from "../../types/Order";
@@ -58,7 +58,7 @@ export const ShoppingCart: FC = () => {
           <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
             <Grid container spacing={2} width="50%">
               <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
-                <Box sx={{ padding: 2, fontFamily: 'cursive' }}>
+                <Box sx={{padding:{md:2, lg:2}, fontFamily: 'cursive' }}>
                   <img height={'100%'} width={'100%'} src={item.img} alt={item.name} />
                 </Box>
               </Grid>
