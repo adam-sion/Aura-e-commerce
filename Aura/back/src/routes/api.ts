@@ -14,7 +14,7 @@ APIRouter.post('/product', addProductHandler);
 APIRouter.delete('/product/:id', deleteProductHandler);
 
 const storage = multer.diskStorage({
-    destination: './upload/images',
+    destination: './tmp/images',
 
     filename:(req,file, cb)=> {
      return cb(null,`${file.fieldname}_${Date.now()}_${Math.round(Math.random() * 1e9)}${path.extname(file.originalname)}`)
