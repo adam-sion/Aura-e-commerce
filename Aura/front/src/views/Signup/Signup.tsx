@@ -100,6 +100,8 @@ export const Signup:FC = ()=> {
           icon: 'error',
           confirmButtonText: 'Okay',
       });
+  } finally {
+    setIsLoading(false);
   }
   }
   
