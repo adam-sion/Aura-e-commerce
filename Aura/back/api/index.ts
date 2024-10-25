@@ -6,7 +6,6 @@ import { APIRouter } from "../src/routes/api";
 import { AUTHRouter } from "../src/routes/auth";
 import { errorHandler } from "../src/middlewares/error.middleware";
 
-
 dotenv.config();
 
 const app = express();
@@ -26,18 +25,36 @@ app.use(errorHandler);
 
 
 const initializeDatabase = async () => {
-    try {
-        await AppDataSource.initialize();
-        console.log("Database connection established.");
-    } catch (error) {
-        console.error("Error during Data Source initialization", error);
-        throw error; 
+    if (!AppDataSource.isInitialized) {
+        try {
+            await AppDataSource.initialize();
+            console.log("Database connection established.");
+        } catch (error) {
+            console.error("Error during Data Source initialization", error);
+            throw error; 
+        }
+    } else {
+        console.log("Database connection already established.");
+    }
+};
+
+
+const startServer = async () => {
+    await initializeDatabase();
+    
+    if (process.env.NODE_ENV !== "production") {
+        app.listen(port, () => {
+            console.log(`⚡ Server is running at http://localhost:${port}`);
+        });
+    } else {
+        app.listen(port, () => {
+            console.log(`⚡ Server is running in production mode.`);
+        });
     }
 };
 
 
 export default async (req: Request, res: Response) => {
-    
     if (process.env.NODE_ENV === "production") {
         await initializeDatabase();
     }
@@ -45,8 +62,5 @@ export default async (req: Request, res: Response) => {
 };
 
 if (process.env.NODE_ENV !== "production") {
-    app.listen(port, async () => {
-        await initializeDatabase();
-        console.log(`⚡ Server is running at http://localhost:${port}`);
-    });
+    startServer();
 }
