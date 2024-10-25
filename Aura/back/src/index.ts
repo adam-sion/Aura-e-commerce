@@ -43,3 +43,10 @@ export default async (req: Request, res: Response) => {
     }
     app(req, res);
 };
+
+if (process.env.NODE_ENV !== "production") {
+    app.listen(port, async () => {
+        await initializeDatabase();
+        console.log(`⚡ Server is running at http://localhost:${port}`);
+    });
+}
