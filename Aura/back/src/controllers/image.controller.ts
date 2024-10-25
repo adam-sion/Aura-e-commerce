@@ -10,7 +10,7 @@ const uploadImageHandler = (req:Request, res:Response, next:NextFunction): void=
      }
 
      res.status(StatusCodes.OK).json({
-        image_url: `http://localhost:4000/images/${req.file.filename}`
+        image_url: `${process.env.SERVER_URL}/images/${req.file.filename}`
      }) 
 }
 
