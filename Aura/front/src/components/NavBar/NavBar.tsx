@@ -8,6 +8,7 @@ import "./NavBar.css"
 import { useShoppingList } from "../../contexts/ShoppingCartContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { isAdmin } from "../../utils/roles";
+import { Order } from "../../types/Order";
 
 
 export const NavBar = () => {
@@ -83,7 +84,7 @@ export const NavBar = () => {
 
             <NavLink style={{ color: 'black' }} to={'/shoppingCart'}>
               <IconButton color="inherit">
-                <Badge badgeContent={items.reduce((acc, item) => acc + item.quantity, 0)} color="secondary">
+                <Badge badgeContent={items.reduce((acc:number, item:Order) => acc + item.quantity, 0)} color="secondary">
                   <ShoppingCartIcon fontSize={"large"} />
                 </Badge>
               </IconButton>
