@@ -1,15 +1,1 @@
-{
-    "version": 2,
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist",
-    "routes": [
-        {
-            "src": "/images/(.*)",
-            "dest": "/upload/images/$1"
-        },
-        {
-            "src": "/(.*)", 
-            "dest": "dist/index.js"
-        }
-    ]
-}
+{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
