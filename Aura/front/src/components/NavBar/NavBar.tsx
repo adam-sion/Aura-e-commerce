@@ -5,7 +5,7 @@ import { theme } from "../../themes/theme";
 import {NavLink } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./NavBar.css"
-import { useShoppingList } from "../../contexts/shoppingCartContext";
+import { useShoppingList } from "../../contexts/ShoppingCartContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { isAdmin } from "../../utils/roles";
 import { Order } from "../../types/Order";
