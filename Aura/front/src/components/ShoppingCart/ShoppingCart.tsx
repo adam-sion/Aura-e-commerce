@@ -23,25 +23,25 @@ export const ShoppingCart: FC = () => {
 >
   <Grid container spacing={2} width={{ xs: '100%', md: '50%' }}>
     <Grid item xs={4} sm={1.5}>
-      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>Products</Box>
+      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>Products</Box>
     </Grid>
     <Grid item xs={4} sm={3}>
-      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>Title</Box>
+      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'Gill Sans, Verdana'}}>Title</Box>
     </Grid>
     <Grid item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
-      <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>Price</Box>
+      <Box sx={{ padding: { sm: 2 }, fontFamily: 'Gill Sans, Verdana'}}>Price</Box>
     </Grid>
     <Grid item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
-      <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>Quantity</Box>
+      <Box sx={{ padding: { sm: 2 },fontFamily: 'Gill Sans, Verdana' }}>Quantity</Box>
     </Grid>
     <Grid item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
-      <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>Size</Box>
+      <Box sx={{ padding: { sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>Size</Box>
     </Grid>
     <Grid item xs={2} sm={1.5}>
-      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>Total</Box>
+      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>Total</Box>
     </Grid>
     <Grid item xs={2} sm={1.5}>
-      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>Remove</Box>
+      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>Remove</Box>
     </Grid>
   </Grid>
 
@@ -62,23 +62,23 @@ export const ShoppingCart: FC = () => {
           </Box>
         </Grid>
         <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={3}>
-          <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>{item.name}</Box>
+          <Box sx={{ padding: { xs: 1, sm: 2 },fontFamily: 'Gill Sans, Verdana' }}>{item.name}</Box>
         </Grid>
         <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
-          <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>${item.price.toFixed(2)}</Box>
+          <Box sx={{ padding: { sm: 2 },fontFamily: 'Gill Sans, Verdana' }}>${item.price.toFixed(2)}</Box>
         </Grid>
         <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
-          <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>{item.quantity}</Box>
+          <Box sx={{ padding: { sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>{item.quantity}</Box>
         </Grid>
         <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
-          <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>{item.size}</Box>
+          <Box sx={{ padding: { sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>{item.size}</Box>
         </Grid>
         <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={1.5}>
-          <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>${(item.price * item.quantity).toFixed(2)}</Box>
+          <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>${(item.price * item.quantity).toFixed(2)}</Box>
         </Grid>
         <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={1.5}>
           <Box
-            sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive', cursor: 'pointer' }}
+            sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'Gill Sans, Verdana', cursor: 'pointer' }}
             onClick={() => removeItem(item)}
           >
             <CloseIcon />
