@@ -407,7 +407,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 
 
-<Box sx={{marginTop:'4vh',  width: '50%'}}>
+<Box sx={{marginTop:'4vh',  width: '60%'}}>
 
 {
   categories.map((category, index) => (
@@ -431,16 +431,16 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
       {/* Header Row */}
       <Grid sx={{ marginTop: '1vh' }} container spacing={2}>
-        <Grid item xs={6} sm={3} md={3}>
+        <Grid item xs={3} sm={3} md={3}>
           <Box sx={{ padding: 2, fontFamily: 'Gill Sans, Verdana' }}>Products</Box>
         </Grid>
-        <Grid item xs={6} sm={3} md={3}>
+        <Grid item xs={3} sm={3} md={3}>
           <Box sx={{ padding: 2, fontFamily: 'Gill Sans, Verdana'}}>Title</Box>
         </Grid>
-        <Grid item xs={6} sm={3} md={3}>
+        <Grid item xs={3} sm={3} md={3}>
           <Box sx={{ padding: 2, fontFamily: 'Gill Sans, Verdana'}}>Price</Box>
         </Grid>
-        <Grid item xs={6} sm={3} md={3}>
+        <Grid item xs={3} sm={3} md={3}>
           <Box sx={{ padding: 2, fontFamily: 'Gill Sans, Verdana' }}>Remove</Box>
         </Grid>
       </Grid>
@@ -463,13 +463,13 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
                     <img height={'100%'} width={'100%'} src={item.img} alt={item.name} />
                   </Box>
                 </Grid>
-                <Grid item xs={6} sm={3} md={3}>
+                <Grid item xs={3} sm={3} md={3}>
                   <Box sx={{ padding: { xs: 1, sm: 2, md: 2 },fontFamily: 'Gill Sans, Verdana' }}>{item.name}</Box>
                 </Grid>
-                <Grid item xs={6} sm={3} md={3}>
+                <Grid item xs={3} sm={3} md={3}>
                   <Box sx={{ padding: { xs: 1, sm: 2, md: 2 }, fontFamily: 'Gill Sans, Verdana' }}>${item.price.toFixed(2)}</Box>
                 </Grid>
-                <Grid item xs={6} sm={3} md={3}>
+                <Grid item xs={3} sm={3} md={3}>
                   <Box sx={{ padding: { xs: 1, sm: 2, md: 2 }, fontFamily: 'Gill Sans, Verdana' }}>
                     <Box
                       sx={{ fontFamily: 'cursive', cursor: 'pointer' }}
@@ -563,7 +563,7 @@ onClick={handleOpen}
       left: '50%',
       transform: 'translate(-50%, -50%)',
       width: { xs: '90%', sm: '70%', md: '50%', lg: '40%' },
-      height: {lg:'80vh', md:'85vh', sm:'90vh', xs:'90vh'},
+      height: {lg:'80vh', md:'60vh', sm:'60vh', xs:'60vh'},
       bgcolor: 'background.paper',
       boxShadow: 24,
       borderRadius: '20px',

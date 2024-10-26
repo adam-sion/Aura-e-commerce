@@ -1,27 +1,21 @@
 {
   "compilerOptions": {
-    /* Language and Environment */
-    "target": "es2020",                                  /* Set the JavaScript language version for emitted JavaScript. */
-    
-    /* Decorators */
-    "experimentalDecorators": true,                      /* Enable experimental support for decorators. */
-    "emitDecoratorMetadata": true,                       /* Emit design-type metadata for decorated declarations. */
-
-    /* Modules */
-    "module": "commonjs",                                /* Specify what module code is generated. */
-    "moduleResolution": "node",                          /* Use Node's module resolution algorithm. */
-    "rootDir": "./src",                                  /* Root folder for the source code. */
-    "outDir": "./dist",                                  /* Output directory for transpiled files. */
-
-    /* Interop Constraints */
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. */
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
-
-    /* Type Checking */
-    "strict": true,                                      /* Enable all strict type-checking options. */
-    "strictPropertyInitialization": false,               /* Disable strict checking of property initialization. */
-    "skipLibCheck": true                                 /* Skip type checking of all .d.ts files for faster compilation. */
+    "target": "es2020",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*.ts"],                            /* Include all .ts files in the src directory. */
-  "exclude": ["node_modules"]                            /* Exclude node_modules from compilation. */
+  "include": [
+    "src/**/*.ts",
+    "@types/**/*.d.ts"  // Include custom types
+, "src/controllers/image.controller.ts"  ],
+  "exclude": ["node_modules"]
 }
