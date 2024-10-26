@@ -64,19 +64,19 @@ export const ShoppingCart: FC = () => {
         <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={3}>
           <Box sx={{ padding: { xs: 1, sm: 2 },fontFamily: 'Gill Sans, Verdana' }}>{item.name}</Box>
         </Grid>
-        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+        <Grid  item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'flex' }} alignItems={'center'} justifyContent={'center'}>
           <Box sx={{ padding: { sm: 2 },fontFamily: 'Gill Sans, Verdana' }}>${item.price.toFixed(2)}</Box>
         </Grid>
-        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+        <Grid  item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'flex' }} alignItems={'center'} justifyContent={'center'}>
           <Box sx={{ padding: { sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>{item.quantity}</Box>
         </Grid>
-        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+        <Grid  item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'flex' }} alignItems={'center'} justifyContent={'center'}>
           <Box sx={{ padding: { sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>{item.size}</Box>
         </Grid>
-        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={1.5}>
+        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={2} sm={1.5}>
           <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'Gill Sans, Verdana' }}>${(item.price * item.quantity).toFixed(2)}</Box>
         </Grid>
-        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={1.5}>
+        <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent:'center' }} item xs={2} sm={1.5}>
           <Box
             sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'Gill Sans, Verdana', cursor: 'pointer' }}
             onClick={() => removeItem(item)}

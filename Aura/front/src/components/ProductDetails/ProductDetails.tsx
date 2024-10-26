@@ -166,7 +166,8 @@ export const ProductDetails: FC = () => {
                 <Button
                   variant="contained"
                   onClick={() => handleQuantityChange(false)}
-                  sx={{ width: { xs: '30px', md: '40px' }, height: { xs: '30px', md: '40px' } }}
+                  sx={{width: { xs: '30px', md: '50px' },
+                  height: { xs: '30px', md: '50px' },}}
                 >
                   -
                 </Button>
@@ -174,7 +175,8 @@ export const ProductDetails: FC = () => {
                 <Button
                   variant="contained"
                   onClick={() => handleQuantityChange(true)}
-                  sx={{ width: { xs: '30px', md: '40px' }, height: { xs: '30px', md: '40px' } }}
+                  sx={{width: { xs: '30px', md: '50px' },
+                  height: { xs: '30px', md: '50px' },}}
                 >
                   +
                 </Button>
