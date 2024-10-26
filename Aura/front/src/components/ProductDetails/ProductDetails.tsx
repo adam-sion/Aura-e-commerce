@@ -6,7 +6,7 @@ import { Product } from "../../types/Product";
 import { Box, Button, ButtonGroup, Divider, Typography } from "@mui/material";
 import './ProductDetails.css';
 import { Order } from "../../types/Order.ts";
-import { useShoppingList } from "../../contexts/ShoppingCartContext.tsx";
+import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
