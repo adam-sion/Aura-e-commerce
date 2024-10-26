@@ -122,7 +122,7 @@ export const Signup:FC = ()=> {
             justifyContent: "flex-start",
             alignItems: "center",
             marginTop: '7vh',
-            width: '17%',
+            width: {md:'17%', sm:'60%', xs:'50%'},
             background: 'linear-gradient(to bottom, #add8e6, #ffcccb)',
             borderRadius: '8px', 
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
@@ -136,7 +136,7 @@ export const Signup:FC = ()=> {
               borderRadius: '8px', 
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
               textAlign: 'center',
-              width: '300px',
+              width: {md:'80%', sm:'100%', xs:'100%'},
               transition: 'background-color 0.3s ease', 
               '&:hover': {
                 backgroundColor: 'white', 

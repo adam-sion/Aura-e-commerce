@@ -54,10 +54,10 @@ export const Category: FC<CategoryProps> = ({ category }) => {
               >
                   <Box
                       sx={{
-                          fontSize: { xs: '16vw', sm: '12vw', md: '6vw' },
+                          fontSize: { xs: '14vw', sm: '10vw', md: '4vw' },
                           m: 1,
                           color: uniqueColor,
-                          fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
+                          fontFamily: 'Gill Sans, Verdana',
                           fontWeight: 'bold',
                           textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
                       }}
@@ -102,7 +102,7 @@ export const Category: FC<CategoryProps> = ({ category }) => {
                           <Box
                               sx={{
                                   fontSize: { xs: '4vw', md: '1.5vh' },
-                                  fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
+                                  fontFamily: 'Gill Sans, Verdana',
                                   color: '#FF69B4',
                                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
                                   letterSpacing: '0.05em',
