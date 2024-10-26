@@ -2,15 +2,15 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "api/index.ts","scripts": {
-  "dev": "ts-node-dev --respawn api/index.ts",
-  "build": "rimraf dist && tsc",
-  "start": "node dist/api/index.js",
-  "ts.check": "tsc --project tsconfig.json",
-  "add-build": "git add dist",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
-
+  "main": "api/index.ts",
+  "scripts": {
+    "dev": "ts-node-dev --respawn api/index.ts",
+    "build": "rimraf dist && tsc",
+    "start": "node dist/api/index.js",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "fs": "^0.0.1-security",
     "http-status-codes": "^2.3.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
