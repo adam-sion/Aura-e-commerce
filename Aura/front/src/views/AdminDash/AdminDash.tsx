@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import { Product } from "../../types/Product";
 import axios from "axios";
 import { useFetchCategoryProducts } from "../../api/hooks/useFetchCategoryProducts";
+import { useLoading } from "../../contexts/loadingContext";
 
 
 
@@ -31,7 +32,7 @@ type ValidationRulesType = {
 export const AdminDash:FC = ()=> {
 
 
-
+  const {setIsLoading} = useLoading();
   const handleRemove = async (product:Product)=> {
     const apiRemove = axios.create({baseURL:`${import.meta.env.VITE_API_URL}/api/product/${product.id}`});
     try {
@@ -204,6 +205,8 @@ const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
    if (imgData.data.image_url === undefined) {
     throw new Error("can't upload image");
    }
+
+   setIsLoading(true);
    const {data} = await api.post('/product', {name:formData.name, price:formData.price, category: formData.category, img:imgData.data.image_url});
    formData.category ==='kids'? fetchKidsProducts(): 
    formData.category ==='men'?fetchMenProducts(): fetchWomenProducts();
@@ -212,8 +215,6 @@ const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
     text: data,
     icon: 'success',
     confirmButtonText: 'Great',
-    backdrop: true,
-    target: document.getElementById('modal'), 
   });
   
 
@@ -236,9 +237,9 @@ const handleSubmit =  async (e:FormEvent<HTMLFormElement>)=> {
       text: errorMessage,
       icon: 'error',
       confirmButtonText: 'Great',
-      backdrop: true,
-      target: document.getElementById('modal'), 
     });
+} finally {
+  setIsLoading(false);
 }
 }
 
@@ -606,7 +607,7 @@ onClick={handleOpen}
           width: { xs: '90%', sm: '70%', md: '60%', lg: '50%' },
           maxHeight: '90%', 
           padding: { xs: 2, sm: 3, md: 4, lg: 5 },
-          overflowY: 'auto', 
+          overflowY: 'hidden', 
         }}
       >
         <Box
