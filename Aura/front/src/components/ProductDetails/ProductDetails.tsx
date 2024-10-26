@@ -48,14 +48,14 @@ export const ProductDetails: FC = () => {
     const api = axios.create({ baseURL: `${import.meta.env.VITE_API_URL}/api/product/${productId}` });
   
     useEffect(() => {
-      
+      setIsLoading(true);
       (async () => {
-        setIsLoading(true);
+       
         const { data } = await api.get('');
         setProduct(data);
 
       })();
-
+      setIsLoading(false);
     }, []);
   
     return (
