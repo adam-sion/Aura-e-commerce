@@ -45,16 +45,17 @@ export const ProductDetails: FC = () => {
     const sizes: Pick<Order, 'size'>[] = [{ size: 'XS' }, { size: 'S' }, { size: 'M' }, { size: 'L' }, { size: 'XL' }];
   
     const { productId } = useParams();
-    const api = axios.create({ baseURL: `http://localhost:4000/api/product/${productId}` });
+    const api = axios.create({ baseURL: `${import.meta.env.VITE_API_URL}/api/product/${productId}` });
   
     useEffect(() => {
+      
       (async () => {
         setIsLoading(true);
         const { data } = await api.get('');
         setProduct(data);
-        
+
       })();
-      setIsLoading(false);
+
     }, []);
   
     return (
