@@ -407,90 +407,92 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 
 
-<Box sx={{marginTop:'4vh',  width: '40%'}}>
+<Box sx={{marginTop:'4vh',  width: '50%'}}>
 
 {
-    categories.map((category,index)=> (
-        <Box key={index} sx={{marginBottom:'15vh'}} ref={(el:HTMLDivElement|null) => (refs.current[index] = el)}>
-<Typography sx={{fontFamily: '"Comic Sans MS", "Comic Sans", cursive'}} textAlign={'center'} variant="h3">{category.name}</Typography>
-<Box sx={{display:'flex', justifyContent:'center', paddingTop:2}}>
-<Divider
+  categories.map((category, index) => (
+    <Box key={index} sx={{ marginBottom: '15vh' }} ref={(el: HTMLDivElement | null) => (refs.current[index] = el)}>
+      <Typography
+        sx={{ fontFamily: '"Comic Sans MS", "Comic Sans", cursive' }}
+        textAlign={'center'}
+        variant="h3"
+      >
+        {category.name}
+      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: 2 }}>
+        <Divider
           sx={{
             borderBottomWidth: '0.3em',
             borderColor: 'lightBlue',
             width: '3em',
           }}
         />
-        </Box>
+      </Box>
 
-<Grid sx={{marginTop:'1vh'}} container spacing={2}>
-          <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive',  }}>Products</Box>
-          </Grid>
-          <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Title</Box>
-          </Grid>
-          <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Price</Box>
-          </Grid>
-          <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Remove</Box>
-          </Grid>
+      {/* Header Row */}
+      <Grid sx={{ marginTop: '1vh' }} container spacing={2}>
+        <Grid item xs={6} sm={3} md={3}>
+          <Box sx={{ padding: 2, fontFamily: 'Gill Sans, Verdana' }}>Products</Box>
         </Grid>
+        <Grid item xs={6} sm={3} md={3}>
+          <Box sx={{ padding: 2, fontFamily: 'Gill Sans, Verdana'}}>Title</Box>
+        </Grid>
+        <Grid item xs={6} sm={3} md={3}>
+          <Box sx={{ padding: 2, fontFamily: 'Gill Sans, Verdana'}}>Price</Box>
+        </Grid>
+        <Grid item xs={6} sm={3} md={3}>
+          <Box sx={{ padding: 2, fontFamily: 'Gill Sans, Verdana' }}>Remove</Box>
+        </Grid>
+      </Grid>
 
-        <Divider
-          sx={{
-            borderBottomWidth: 2,
-            borderColor: '#D4AF37',
-            width: '100%',
-          }}
-        />
+      <Divider
+        sx={{
+          borderBottomWidth: 2,
+          borderColor: '#D4AF37',
+          width: '100%',
+        }}
+      />
 
+      {/* Product Rows */}
+      {productMap !== null
+        ? productMap[category.name.toLowerCase()].map((item: Product, index) => (
+            <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
+              <Grid sx={{ marginTop: '1vh' }} container spacing={2}>
+                <Grid item xs={6} sm={3} md={3}>
+                  <Box sx={{ padding: { xs: 1, sm: 2, md: 2 }, fontFamily: 'cursive' }}>
+                    <img height={'100%'} width={'100%'} src={item.img} alt={item.name} />
+                  </Box>
+                </Grid>
+                <Grid item xs={6} sm={3} md={3}>
+                  <Box sx={{ padding: { xs: 1, sm: 2, md: 2 },fontFamily: 'Gill Sans, Verdana' }}>{item.name}</Box>
+                </Grid>
+                <Grid item xs={6} sm={3} md={3}>
+                  <Box sx={{ padding: { xs: 1, sm: 2, md: 2 }, fontFamily: 'Gill Sans, Verdana' }}>${item.price.toFixed(2)}</Box>
+                </Grid>
+                <Grid item xs={6} sm={3} md={3}>
+                  <Box sx={{ padding: { xs: 1, sm: 2, md: 2 }, fontFamily: 'Gill Sans, Verdana' }}>
+                    <Box
+                      sx={{ fontFamily: 'cursive', cursor: 'pointer' }}
+                      onClick={() => handleRemove(item)}
+                    >
+                      <CloseIcon />
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
 
-{/* products */}
-{productMap!== null ?
- productMap[category.name.toLowerCase()].map((item:Product, index)=> (
-        <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
-     <Grid sx={{marginTop:'1vh'}} container spacing={2}>
-          <Grid item xs={3}>
-            <Box sx={{ padding:{md:2, lg:2}, fontFamily: 'cursive' }}> <img height={'100%'} width={'100%'} src={item.img} alt={item.name} /></Box>
-          </Grid>
-          <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.name}</Box>
-          </Grid>
-          <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>${item.price.toFixed(2)}</Box>
-          </Grid>
-          <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>
-
-            <Box
-                  sx={{ padding: 2, fontFamily: 'cursive', cursor: 'pointer' }}
-                  onClick={() => handleRemove(item)} 
-                >
-                  <CloseIcon />
-                </Box>
-
+              <Divider
+                sx={{
+                  borderBottomWidth: 2,
+                  borderColor: '#D4AF37',
+                  width: '100%',
+                }}
+              />
             </Box>
-          </Grid>
-        </Grid>
-
-        <Divider
-          sx={{
-            borderBottomWidth: 2,
-            borderColor: '#D4AF37',
-            width: '100%',
-          }}
-        />
-     </Box>
-    ))
-    
-:null}
-
-
-        </Box>
-    ))
-  
+          ))
+        : null}
+    </Box>
+  ))
 }
 
 
