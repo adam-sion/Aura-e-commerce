@@ -17,7 +17,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use(express.json());
 app.use(cors());
-app.use('/images', express.static('tmp/images')); 
+app.use('/images', express.static('tmp')); 
 
 app.use('/api', APIRouter);
 app.use('/auth', AUTHRouter);

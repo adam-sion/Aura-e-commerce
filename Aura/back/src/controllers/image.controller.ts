@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { BadRequest } from "../errors/BadRequest";
 import { StatusCodes } from "http-status-codes";
-import path from 'path';
 const port = process.env.PORT||3000;
 
 
