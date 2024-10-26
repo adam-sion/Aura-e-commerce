@@ -16,7 +16,7 @@ export const NavBar = () => {
   const { username, logout } = useAuth();
 
   return (
-    <div style={{ marginBottom: '25px', width: '100%' }}>
+    <div style={{ marginBottom: '25px', width: '100%', }}>
       <AppBar sx={{ bgcolor: theme.palette.primary.main, position: 'static',  }}>
         <Toolbar sx={{ display: 'flex', flexDirection:{sm:'column', xs:'column', md:'row', lg:'md'}, justifyContent: {md:'space-between', lg:'space-between'}, flexWrap: 'wrap', gap:'2vh' }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>

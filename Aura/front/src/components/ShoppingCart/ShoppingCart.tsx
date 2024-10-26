@@ -12,123 +12,124 @@ export const ShoppingCart: FC = () => {
 
   return !didUserSign()? <Navigate to="/login"/> : (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center', 
-          width: '100%',
-          marginTop: '4vh',
-        }}
-      >
+ <Box
+  sx={{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center', 
+    width: '100%',
+    marginTop: '4vh',
+  }}
+>
+  <Grid container spacing={2} width={{ xs: '100%', md: '50%' }}>
+    <Grid item xs={4} sm={1.5}>
+      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>Products</Box>
+    </Grid>
+    <Grid item xs={4} sm={3}>
+      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>Title</Box>
+    </Grid>
+    <Grid item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+      <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>Price</Box>
+    </Grid>
+    <Grid item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+      <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>Quantity</Box>
+    </Grid>
+    <Grid item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+      <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>Size</Box>
+    </Grid>
+    <Grid item xs={2} sm={1.5}>
+      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>Total</Box>
+    </Grid>
+    <Grid item xs={2} sm={1.5}>
+      <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>Remove</Box>
+    </Grid>
+  </Grid>
 
-        <Grid container spacing={2} width="50%">
-          <Grid item xs={1.5}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Products</Box>
-          </Grid>
-          <Grid item xs={3}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Title</Box>
-          </Grid>
-          <Grid item xs={1.5}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Price</Box>
-          </Grid>
-          <Grid item xs={1.5}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Quantity</Box>
-          </Grid>
-          <Grid item xs={1.5}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Size</Box> {/* New Size Column */}
-          </Grid>
-          <Grid item xs={1.5}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Total</Box>
-          </Grid>
-          <Grid item xs={1.5}>
-            <Box sx={{ padding: 2, fontFamily: 'cursive' }}>Remove</Box>
-          </Grid>
-        </Grid>
+  <Divider
+    sx={{
+      borderBottomWidth: 2,
+      borderColor: '#D4AF37',
+      width: { xs: '100%', md: '50%' },
+    }}
+  />
 
-        <Divider
-          sx={{
-            borderBottomWidth: 2,
-            borderColor: '#D4AF37',
-            width: '50%',
-          }}
-        />
-
-        {items.map((item: Order, index: number) => (
-          <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
-            <Grid container spacing={2} width="50%">
-              <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
-                <Box sx={{padding:{md:2, lg:2}, fontFamily: 'cursive' }}>
-                  <img height={'100%'} width={'100%'} src={item.img} alt={item.name} />
-                </Box>
-              </Grid>
-              <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={3}>
-                <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.name}</Box>
-              </Grid>
-              <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
-                <Box sx={{ padding: 2, fontFamily: 'cursive' }}>${item.price.toFixed(2)}</Box>
-              </Grid>
-              <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
-                <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.quantity}</Box>
-              </Grid>
-              <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
-                <Box sx={{ padding: 2, fontFamily: 'cursive' }}>{item.size}</Box> 
-              </Grid>
-              <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
-                <Box sx={{ padding: 2, fontFamily: 'cursive' }}>${(item.price * item.quantity).toFixed(2)}</Box>
-              </Grid>
-              <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5}>
-                <Box
-                  sx={{ padding: 2, fontFamily: 'cursive', cursor: 'pointer' }}
-                  onClick={() => removeItem(item)} 
-                >
-                  <CloseIcon />
-                </Box>
-              </Grid>
-            </Grid>
-
-            <Divider
-              sx={{
-                borderBottomWidth: 2,
-                borderColor: '#D4AF37',
-                width: '50%',
-              }}
-            />
+  {items.map((item: Order, index: number) => (
+    <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
+      <Grid container spacing={2} width={{ xs: '100%', md: '50%' }}>
+        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={1.5}>
+          <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>
+            <img height={'100%'} width={'100%'} src={item.img} alt={item.name} />
           </Box>
-        ))}
-
-        {items.length > 0 ? (
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: '#f44336',
-              color: 'white',
-              borderRadius: 20,
-              padding: { xs: '8px 16px', md: '10px 20px' },
-              fontSize: { xs: '14px', md: '18px' },
-              fontWeight: 'bold',
-              boxShadow: 3,
-              marginTop: '7vh',
-              marginBottom: '5vh',
-              '&:hover': {
-                backgroundColor: '#d32f2f',
-                boxShadow: 6,
-              },
-            }}
-            onClick={() => {
-              removeAll();
-              Swal.fire({
-                title: 'Success!',
-                text: 'Your purchase was successful.',
-                icon: 'success',
-                confirmButtonText: 'Okay',
-              });
-            }}
+        </Grid>
+        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={3}>
+          <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>{item.name}</Box>
+        </Grid>
+        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+          <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>${item.price.toFixed(2)}</Box>
+        </Grid>
+        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+          <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>{item.quantity}</Box>
+        </Grid>
+        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={1.5} sm={1.5} display={{ xs: 'none', sm: 'block' }}>
+          <Box sx={{ padding: { sm: 2 }, fontFamily: 'cursive' }}>{item.size}</Box>
+        </Grid>
+        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={1.5}>
+          <Box sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive' }}>${(item.price * item.quantity).toFixed(2)}</Box>
+        </Grid>
+        <Grid sx={{ display: 'flex', alignItems: 'center' }} item xs={4} sm={1.5}>
+          <Box
+            sx={{ padding: { xs: 1, sm: 2 }, fontFamily: 'cursive', cursor: 'pointer' }}
+            onClick={() => removeItem(item)}
           >
-            Purchase
-          </Button>
-        ) : <></>}
-      </Box>
+            <CloseIcon />
+          </Box>
+        </Grid>
+      </Grid>
+
+      <Divider
+        sx={{
+          borderBottomWidth: 2,
+          borderColor: '#D4AF37',
+          width: { xs: '100%', md: '50%' },
+        }}
+      />
+    </Box>
+  ))}
+  
+  {items.length > 0 && (
+    <Button
+      variant="contained"
+      sx={{
+        backgroundColor: '#f44336',
+        color: 'white',
+        borderRadius: 20,
+        padding: { xs: '8px 16px', md: '10px 20px' },
+        fontSize: { xs: '14px', md: '18px' },
+        fontWeight: 'bold',
+        boxShadow: 3,
+        marginTop: '7vh',
+        marginBottom: '5vh',
+        '&:hover': {
+          backgroundColor: '#d32f2f',
+          boxShadow: 6,
+        },
+      }}
+      onClick={() => {
+        removeAll();
+        Swal.fire({
+          title: 'Success!',
+          text: 'Your purchase was successful.',
+          icon: 'success',
+          confirmButtonText: 'Okay',
+        });
+      }}
+    >
+      Purchase
+    </Button>
+  )}
+</Box>
+
+
     </>
   );
 };

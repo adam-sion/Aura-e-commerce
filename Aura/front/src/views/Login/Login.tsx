@@ -121,7 +121,7 @@ export const Login:FC = ()=> {
           >
             Sign in
           </Button>
-      <Typography fontFamily={'"Comic Sans MS", "Comic Sans", cursive'}>Don't have an account? <Link to={'/signup'}>sign up</Link></Typography>
+      <Typography fontFamily= {'Gill Sans, Verdana'}>Don't have an account? <Link to={'/signup'}>sign up</Link></Typography>
         </Stack>
       </Box>
       

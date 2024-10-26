@@ -28,7 +28,7 @@ border-bottom: 2px solid black;
 
   .title-card span::before {
     content: 'Admin';
-    font-size: 7px;
+    font-size: 0.2em;
     position:absolute;
     width:150%;
     height: 15px;
