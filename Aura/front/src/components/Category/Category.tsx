@@ -10,6 +10,7 @@ import { Gallery } from "../Gallery/Gallery";
 
 import { useFetchCategoryProducts } from "../../api/hooks/useFetchCategoryProducts.tsx";
 
+
 interface CategoryProps {
     category: Product["category"]
 }

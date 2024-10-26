@@ -10,9 +10,11 @@ import { useShoppingList } from "../../contexts/shoppingCartContext.tsx";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import { useLoading } from "../../contexts/loadingContext.tsx";
 
 
 export const ProductDetails: FC = () => {
+  const {setIsLoading} = useLoading();
     const [product, setProduct] = useState<Product | undefined>();
     const { addItem } = useShoppingList();
     const [order, setOrder] = useState<Order | undefined>();
@@ -47,9 +49,12 @@ export const ProductDetails: FC = () => {
   
     useEffect(() => {
       (async () => {
+        setIsLoading(true);
         const { data } = await api.get('');
         setProduct(data);
+        
       })();
+      setIsLoading(false);
     }, []);
   
     return (

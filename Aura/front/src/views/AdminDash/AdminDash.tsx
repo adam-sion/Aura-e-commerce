@@ -408,7 +408,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 
 
-<Box sx={{marginTop:'4vh',  width: '60%'}}>
+<Box sx={{marginTop:'4vh',  width: {md:'60%', sm:'80%', xs:'80%', lg:'50%'}}}>
 
 {
   categories.map((category, index) => (
@@ -459,7 +459,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         ? productMap[category.name.toLowerCase()].map((item: Product, index) => (
             <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} key={index}>
               <Grid sx={{ marginTop: '1vh' }} container spacing={2}>
-                <Grid item xs={6} sm={3} md={3}>
+                <Grid item xs={3} sm={3} md={3}>
                   <Box sx={{ padding: { xs: 1, sm: 2, md: 2 }, fontFamily: 'cursive' }}>
                     <img height={'100%'} width={'100%'} src={item.img} alt={item.name} />
                   </Box>
@@ -564,7 +564,7 @@ onClick={handleOpen}
       left: '50%',
       transform: 'translate(-50%, -50%)',
       width: { xs: '90%', sm: '70%', md: '50%', lg: '40%' },
-      height: {lg:'80vh', md:'60vh', sm:'60vh', xs:'60vh'},
+      height: {lg:'80vh', md:'75vh', sm:'75vh', xs:'90vh'},
       bgcolor: 'background.paper',
       boxShadow: 24,
       borderRadius: '20px',
@@ -607,7 +607,7 @@ onClick={handleOpen}
           width: { xs: '90%', sm: '70%', md: '60%', lg: '50%' },
           maxHeight: '90%', 
           padding: { xs: 2, sm: 3, md: 4, lg: 5 },
-          overflowY: 'hidden', 
+          overflow: 'hidden', 
         }}
       >
         <Box
