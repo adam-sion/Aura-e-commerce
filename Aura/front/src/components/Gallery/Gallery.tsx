@@ -11,8 +11,8 @@ export const Gallery:FC<GalleryProps> = ({products})=> {
     return (
 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 10, md: 16 }}>
   {Array.isArray(products)? products.map((item) => (
-    <Grid item xs={2} sm={4} md={3} key={item.id}>
-      <Link to={`/product/${item.id}`}><Box
+    <Grid display={'flex'} flexDirection={'column'} item xs={2} sm={4} md={3} key={item.id}>
+      <Link style={{marginTop:'auto', marginBottom:'auto'}} to={`/product/${item.id}`}><Box
         component="img"
         src={item.img}
         alt=""

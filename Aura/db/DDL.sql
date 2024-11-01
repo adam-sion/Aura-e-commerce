@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS aura.products CASCADE;
 CREATE TABLE aura.products (
  id SERIAL PRIMARY KEY,
  name TEXT NOT NULL,
- price SMALLINT NOT NULL,
+ price NUMERIC(10,2) NOT NULL,
  category VARCHAR(10) CHECK (category IN ('men', 'women', 'kids')),
  img TEXT NOT NULL
 );
